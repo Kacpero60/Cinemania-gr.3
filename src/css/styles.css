@@ -1,0 +1,11 @@
+ * {
+     margin: 0;
+     padding: 0;
+ }
+
+ :root {
+     --black-color: #000;
+     --white-color: #fff;
+     --grey-color: #B7B7B7;
+     --orange-color: #F87719;
+ }
