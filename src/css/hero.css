@@ -1,0 +1,114 @@
+body {
+  background-color: #111;
+  height: 100vh;
+  font-family: Roboto, sans-serif;
+}
+
+.hero.container {
+  width: 100%;
+  height: 380px;
+  background: linear-gradient(83deg, #111 36.85%, rgba(17, 17, 17, 0) 60.05%),
+    url(./images/Hero_mobile.png) no-repeat;
+  background-size: contain;
+  background-position: right;
+}
+
+.intro {
+  color: #fff;
+  display: flex;
+  max-width: 199px;
+  flex-direction: column;
+  gap: 8px;
+  padding-top: 40px;
+  padding-left: 20px;
+  margin-bottom: 20px;
+}
+
+.title {
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 700;
+}
+
+.text {
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+}
+
+.hero.CTA-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 24px;
+  height: 38px;
+  background: linear-gradient(141deg, #ffc226 9.4%, #f84119 91.91%);
+  border-radius: 74px;
+  color: var(--Background, #111);
+  text-align: center;
+  font-family: Roboto, sans-serif;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 28px; /* 155.556% */
+  margin-left: 20px;
+  border: none;
+  cursor: pointer;
+}
+
+@media (min-width: 768px) {
+  .hero.container {
+    height: 372px;
+    background: linear-gradient(83deg, #111 36.85%, rgba(17, 17, 17, 0) 60.05%),
+      url(./images/Hero_tablet.png) no-repeat;
+    background-size: contain;
+    background-position: right;
+  }
+  .intro {
+    max-width: 332px;
+    padding-top: 62px;
+    padding-left: 32px;
+    margin-bottom: 32px;
+  }
+  .hero.CTA-btn {
+    margin-left: 32px;
+    font-size: 14px;
+    height: 40px;
+  }
+  .title {
+    font-size: 44;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1279px) {
+  .hero.CTA-btn {
+    padding: 10px 24px;
+  }
+}
+
+@media (min-width: 1280px) {
+  .hero.container {
+    height: 660px;
+    background: linear-gradient(83deg, #111 36.85%, rgba(17, 17, 17, 0) 60.05%),
+      url(./images/Hero_desktop.png) no-repeat;
+    background-size: contain;
+    background-position: right;
+  }
+  intro {
+    width: 464px;
+    gap: 16px;
+    padding-top: 169px;
+  }
+  .hero.CTA-btn {
+    font-size: 16px;
+  }
+  .title {
+    font-size: 64px;
+  }
+  .text {
+    font-size: 16px;
+  }
+  .hero.CTA-btn {
+    height: 48px;
+  }
+}
