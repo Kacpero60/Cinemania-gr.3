@@ -66,7 +66,7 @@ async function populateYears() {
 async function popularMovies(page = 1, selectedCountry = '', selectedYear = '') {
     const regionParams = selectedCountry ? `&region=${selectedCountry}` : '';
     const yearParams = selectedYear ? `&primary_release_year=${selectedYear}` : '';
-    const apiUrl = `https://api.themoviedb.org/3/movie/popular?api_key=${apikey}&include_adult=false&page=${page}${regionParams}${yearParams}`;
+    const apiUrl = `https://api.themoviedb.org/3/movie/popular?api_key=${apikey}&language=en-US&include_adult=false&page=${page}${regionParams}${yearParams}`;
 
     try {
         const response = await fetch(apiUrl);
@@ -97,7 +97,7 @@ async function popularMovies(page = 1, selectedCountry = '', selectedYear = '') 
                 gallery.textContent =  'OOPS...We are very sorry! You dont have any results matching your search.';
         }
 
-        totalPages = data.total_pages;
+        //totalPages = data.total_pages;
        // renderBtn();
         } catch (error) {
                 console.error('error fetching movies:', error);
@@ -108,8 +108,9 @@ async function popularMovies(page = 1, selectedCountry = '', selectedYear = '') 
 async function searchMovies(keyWord, page = 1) {
     const yearParams = selectedYear ? `&primary_release_year=${selectedYear}` : '';
     const regionParams = selectedCountry ? `&region=${selectedCountry}` : '';
-    const apiURL = `https://api.themoviedb.org/3/search/movie?query=${keyWord}&api_key=${apikey}&include_adult=false&page=${page}${regionParams}${yearParams}`;
+    const apiURL = `https://api.themoviedb.org/3/search/movie?query=${keyWord}&api_key=${apikey}&language=en-US&include_adult=false&page=${page}${regionParams}${yearParams}`;
 
+    console.log(apiURL); 
 
 try {
     const response = await fetch(apiURL);
@@ -148,7 +149,7 @@ if (data.results.length > 0) {
         gallery.textContent =  'OOPS...We are very sorry! You dont have any results matching your search.';
 }
 
-totalPages = data.total_pages;
+//totalPages = data.total_pages;
 //renderBtn();
 } catch (error) {
         console.error('error fetching movies:', error);
@@ -171,7 +172,7 @@ document.getElementById('searchButton').addEventListener('click', function(event
 
     //wywołanie searchMovies
     currentPage = 1;
-    searchMovies();
+    searchMovies(keyWord);
 
 });
 
