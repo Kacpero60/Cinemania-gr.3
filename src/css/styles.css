@@ -1,3 +1,5 @@
+@import './pop-up';
+
  * {
      margin: 0;
      padding: 0;
@@ -9,3 +11,4 @@
      --grey-color: #B7B7B7;
      --orange-color: #F87719;
  }
+
