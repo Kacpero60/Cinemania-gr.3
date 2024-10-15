@@ -1,14 +1,9 @@
-body {
-  background-color: var(--black-color);
-  height: 100vh;
-  font-family: Roboto, sans-serif;
-}
-
 .hero.container {
+  font-family: Roboto, sans-serif;
   width: 100%;
-  height: 380px;
+  height: 100%;
   background: linear-gradient(83deg, #111 36.85%, rgba(17, 17, 17, 0) 60.05%),
-    url(../images/Hero_mobile.png) no-repeat;
+    url(images/Hero_mobile.png) no-repeat;
   background-size: contain;
   background-position: right;
 }
@@ -16,7 +11,7 @@ body {
 .intro {
   color: #fff;
   display: flex;
-  max-width: 199px;
+  max-width: 232px;
   flex-direction: column;
   gap: 8px;
   padding-top: 40px;
@@ -34,54 +29,86 @@ body {
   font-size: 14px;
   font-style: normal;
   font-weight: 400;
+  max-width: 177px;
+  overflow: hidden;
 }
 
-.hero.CTA-btn {
+.buttons {
+  display: flex;
+  gap: 8px;
+  font-family: inherit;
+}
+
+.hero-btn.cta {
   display: inline-flex;
   align-items: center;
   gap: 10px;
   padding: 12px 24px;
-  height: 38px;
   background: linear-gradient(141deg, #ffc226 9.4%, #f84119 91.91%);
   border-radius: 74px;
-  color: var(--Background, #111);
+  color: var(--black-color, #111);
   text-align: center;
-  font-family: Roboto, sans-serif;
   font-size: 12px;
   font-style: normal;
   font-weight: 500;
-  line-height: 28px; /* 155.556% */
   margin-left: 20px;
   border: none;
   cursor: pointer;
+}
+
+.hero-btn.more-details {
+  display: inline-flex;
+  padding: 12px 24px;
+  align-items: flex-start;
+  gap: 10px;
+  border-radius: 74px;
+  border: 1px solid #fff;
+  color: #fff;
+  text-align: center;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  cursor: pointer;
+  margin-left: 8px;
+  background: transparent;
 }
 
 @media (min-width: 768px) {
   .hero.container {
     height: 372px;
     background: linear-gradient(83deg, #111 36.85%, rgba(17, 17, 17, 0) 60.05%),
-      url(../images/Hero_tablet.png) no-repeat;
+      url(images/Hero_tablet.png) no-repeat;
     background-size: contain;
     background-position: right;
   }
   .intro {
-    max-width: 332px;
+    max-width: 445px;
     padding-top: 62px;
     padding-left: 32px;
     margin-bottom: 32px;
   }
-  .hero.CTA-btn {
-    margin-left: 32px;
+  .hero-btn {
     font-size: 14px;
     height: 40px;
   }
+
+  .hero-btn.cta {
+    margin-left: 32px;
+  }
+
   .title {
     font-size: 44;
+  }
+
+  .text {
+    max-width: 254px;
+    height: 49px;
   }
 }
 
 @media (min-width: 768px) and (max-width: 1279px) {
-  .hero.CTA-btn {
+  .hero-btn {
     padding: 10px 24px;
   }
 }
@@ -90,25 +117,29 @@ body {
   .hero.container {
     height: 660px;
     background: linear-gradient(83deg, #111 36.85%, rgba(17, 17, 17, 0) 60.05%),
-      url(../images/Hero_desktop.png) no-repeat;
+      url(images/Hero_desktop.png) no-repeat;
     background-size: contain;
     background-position: right;
   }
-  intro {
-    width: 464px;
+  .intro {
+    max-width: 670px;
     gap: 16px;
-    padding-top: 169px;
+    padding-top: 118px;
+    margin-left: 135px;
   }
-  .hero.CTA-btn {
+  .buttons {
+    margin-left: 135px;
+  }
+  .hero-btn {
     font-size: 16px;
+    height: 48px;
   }
   .title {
     font-size: 64px;
   }
   .text {
     font-size: 16px;
-  }
-  .hero.CTA-btn {
-    height: 48px;
+    max-width: 367px;
+    height: 59px;
   }
 }
