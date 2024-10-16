@@ -69,6 +69,9 @@ const setDefaultHero = () => {
     "Is a guide to creating a personalized movie theater experience. You'll need a projector, screen, and speakers. Decorate your space, choose your films, and stock up on snacks for the full experience.";
   heroDescription.style.height = 'auto';
   watchTrailerBtn.textContent = 'Get started';
+  watchTrailerBtn.onclick = () => {
+    window.location.href = 'partials/catalog.html';
+  };
   moreDetailsBtn.style.display = 'none';
 };
 
