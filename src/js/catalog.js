@@ -1,7 +1,8 @@
 const apikey = '26ee83a5e26d7fcb87f8d8380af6bd82';
 const gallery = document.querySelector(".gallery");
 let currentPage = 1;
-//let totalPages = 0;
+let totalPages = 24;
+const perPage = 20;
 let keyWord = '';
 let selectedCountry = '';
 let selectedYear = '';
@@ -41,26 +42,88 @@ async function populateYears() {
 }
 
 //renderowanie przycisków
-//async function renderBtn() {
-   // const paginationBtn = document.getElementById('pagination');
-    //paginationBtn.innerHTML = '';
+async function renderBtn() {
+    const paginationBtn = document.getElementById('pagination');
+    paginationBtn.innerHTML = '';
 
-    //for (let i = 1; i <= totalPages; i++) {
-      //  const btn = document.createElement('button');
-        //btn.textContent = i;
+   //przycisk do cofania '<'
+   if (currentPage >= 1) {
+        const prevBtn = document.createElement('button');
+        prevBtn.textContent = '<';
 
-        //btn.addEventListener('click', () => {
-          //  currentPage = i;
+        prevBtn.addEventListener('click', () => {
+            currentPage--;
 
-        //if (keyWord) {
-          //  searchMovies(keyWord, currentPage);
-        //} else {
-          //  popularMovies(currentPage);
-        //}
-        //});
-        //paginationBtn.appendChild(btn);
-    //}
-//}
+            if (keyWord) {
+                searchMovies(keyWord, currentPage)
+            } else {
+                popularMovies(currentPage);
+            }
+            renderBtn();
+        });
+        paginationBtn.appendChild(prevBtn);
+   }
+
+   //wyświetlenie pierwszych trzech stron
+   for (let i = 1; i <= Math.min(3, totalPages); i++) {
+        const btn = document.createElement('button');
+        btn.textContent = i;
+
+        btn.addEventListener('click', () => {
+            currentPage = i;
+
+            if (keyWord) {
+                searchMovies(keyWord, currentPage);
+            } else {
+                popularMovies(currentPage);
+            }
+            renderBtn();
+        });
+        paginationBtn.appendChild(btn);
+   }
+
+   
+   //kropki, gdy jest wiecej niz 3 strony
+   if (totalPages > 3) {
+       const dots =document.createElement('div');
+       dots.textContent = '...';
+       paginationBtn.appendChild(dots);
+       
+       //wyswietlenie 24 strony
+       const lastBtn = document.createElement('button');
+       lastBtn.textContent = 24;
+       
+       lastBtn.addEventListener('click', () => {
+           currentPage = 24;
+           
+           if (keyWord) {
+               searchMovies(keyWord, currentPage);
+            } else {
+                popularMovies(currentPage);
+            }
+            renderBtn();
+        });
+        paginationBtn.appendChild(lastBtn);
+   }
+
+   //przycisk do nastepnej strony '>'
+   if (currentPage < totalPages) {
+    const nextBtn = document.createElement('button');
+    nextBtn.textContent = '>';
+
+    nextBtn.addEventListener('click', () => {
+        currentPage++;
+
+        if (keyWord) {
+            searchMovies(keyWord, currentPage)
+        } else {
+            popularMovies(currentPage);
+        }
+        renderBtn();
+    });
+    paginationBtn.appendChild(nextBtn);
+}
+}
 
 //funkcja do pobierania popularnych filmów, jest wyświetlana po załadowaniu strony
 async function popularMovies(page = 1, selectedCountry = '', selectedYear = '') {
@@ -97,8 +160,8 @@ async function popularMovies(page = 1, selectedCountry = '', selectedYear = '') 
                 gallery.textContent =  'OOPS...We are very sorry! You dont have any results matching your search.';
         }
 
-        //totalPages = data.total_pages;
-       // renderBtn();
+        totalPages = data.total_pages;
+        renderBtn();
         } catch (error) {
                 console.error('error fetching movies:', error);
         }
@@ -149,8 +212,8 @@ if (data.results.length > 0) {
         gallery.textContent =  'OOPS...We are very sorry! You dont have any results matching your search.';
 }
 
-//totalPages = data.total_pages;
-//renderBtn();
+totalPages = data.total_pages;
+renderBtn();
 } catch (error) {
         console.error('error fetching movies:', error);
 }
