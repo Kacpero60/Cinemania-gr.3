@@ -5,22 +5,17 @@ const moreDetailsBtn = document.querySelector('.hero-btn.more-details');
 const heroSection = document.querySelector('.hero.container');
 const intro = document.querySelector('.intro');
 
-const options = {
-  method: 'GET',
-  headers: {
-    accept: 'application/json',
-    Authorization:
-      'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI5ZGFmNjM2ZDFlODkyMDExOWQzMTQzY2RmNzBhN2YwMyIsIm5iZiI6MTcyODYzMTgwMy45MTE0MTcsInN1YiI6IjY3MDhkMjQ0ZDM1N2EyMTAzOTk2YjFlZiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.5uM4DtVyZACf3caezHHrJ_7jiOROWxJUJYqRS0RLCPE',
-  },
-};
-
 // Funkcja pobierająca dane z API i losująca film
 const fetchRandomMovie = async () => {
+  const apiKey = '9daf636d1e8920119d3143cdf70a7f03';
+  const url = `https://api.themoviedb.org/3/trending/movie/day?language=en-US&api_key=${apiKey}`;
+
   try {
-    const response = await fetch(
-      'https://api.themoviedb.org/3/trending/movie/day?language=en-US',
-      options
-    );
+    const response = await fetch(url);
+    if (!response.ok) {
+      throw new Error('response was not ok');
+    }
+
     const data = await response.json();
 
     if (data && data.results && data.results.length > 0) {
@@ -32,14 +27,14 @@ const fetchRandomMovie = async () => {
       heroTitle.textContent = randomMovie.title || 'Unknown Title';
       heroDescription.textContent =
         randomMovie.overview || 'No description available for this movie.';
+
+      addEllipsis();
+
       moreDetailsBtn.style.display = 'block';
+
       const backgroundImageUrl = `https://image.tmdb.org/t/p/original${randomMovie.backdrop_path}`;
-      heroSection.style.backgroundImage = `
-          linear-gradient(83deg, #111 36.85%, rgba(17, 17, 17, 0) 60.05%), 
-          url(${backgroundImageUrl})
-        `;
-      heroSection.style.backgroundSize = 'cover';
-      heroSection.style.backgroundPosition = 'center';
+
+      setBackgroundImage(backgroundImageUrl);
     } else {
       setDefaultHero(); // Jeśli brak wyników, ustawiamy domyślny wygląd
     }
@@ -49,12 +44,34 @@ const fetchRandomMovie = async () => {
   }
 };
 
+const setBackgroundImage = imageUrl => {
+  heroSection.style.backgroundImage = `
+    linear-gradient(83deg, #111 36.85%, rgba(17, 17, 17, 0) 60.05%), 
+    url(${imageUrl})
+  `;
+};
+
+//Funckja dodająca trzykropek w opisie w przypadku dłuższego tekstu
+const addEllipsis = () => {
+  const originalText = heroDescription.innerText;
+  let text = originalText;
+
+  while (heroDescription.scrollHeight > heroDescription.clientHeight) {
+    text = text.slice(0, -1);
+    heroDescription.innerText = text + '...';
+  }
+};
+
 // Funkcja ustawiająca domyślny wygląd sekcji hero
 const setDefaultHero = () => {
   heroTitle.textContent = "Let's Make Your Own Cinema";
   heroDescription.textContent =
     "Is a guide to creating a personalized movie theater experience. You'll need a projector, screen, and speakers. Decorate your space, choose your films, and stock up on snacks for the full experience.";
+  heroDescription.style.height = 'auto';
   watchTrailerBtn.textContent = 'Get started';
+  watchTrailerBtn.onclick = () => {
+    window.location.href = 'partials/catalog.html';
+  };
   moreDetailsBtn.style.display = 'none';
 };
 
