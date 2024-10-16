@@ -1,11 +1,8 @@
-.form, .select {
+.search-catalog {
     display: flex;
-    flex-wrap: wrap;
-    align-items: center;
     justify-content: center;
     gap: 5px;
     margin: 5px;
-
 }
 
 .gallery {
@@ -31,4 +28,9 @@
     left: 0;
     right: 0;
     bottom: 0;
+}
+
+.pagination {
+    display: flex;
+    justify-content: center;
 }
