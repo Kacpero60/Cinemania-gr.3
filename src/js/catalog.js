@@ -92,6 +92,10 @@ async function popularMovies(page = 1, selectedCountry = '', selectedYear = '') 
                 movieEl.appendChild(imgEl);
                 gallery.appendChild(movieEl);
                 movieEl.appendChild(titleEl);
+
+                movieEl.addEventListener("click", () => {
+                    openPopUp(movie);
+                });
             }
         } else {
                 gallery.textContent =  'OOPS...We are very sorry! You dont have any results matching your search.';
@@ -182,3 +186,45 @@ document.addEventListener("DOMContentLoaded", () => {
     selector();
     popularMovies(currentPage);
 });
+
+function openPopUp(movie) {
+    const popUpContainer = document.getElementById('popUpContainer');
+    const popUpImage = document.getElementById('popUpImage');
+    const popUpDescription = document.getElementById('popUpDescription');
+
+    // Set the image and description
+    // popUpImage.style.backgroundImage = `url(https://image.tmdb.org/t/p/w500${movie.poster_path})`;
+
+    // Clear previous content
+    popUpImage.innerHTML = ''; // Clear any existing image
+    popUpDescription.innerHTML = ''; // Clear any existing description
+
+    // Create an img element for the movie poster
+    const imgEl = document.createElement('img');
+    imgEl.src = `https://image.tmdb.org/t/p/w500${movie.poster_path}`;
+
+    // Append the image to the pop-up image div
+    popUpImage.appendChild(imgEl);
+
+
+
+
+    // popUpDescription.innerHTML = `
+    //     <h2>${movie.title}</h2>
+    //     <p>Vote / Votes: ${movie.vote_average} / ${movie.vote_count}</p>
+    //     <p>Popularity: ${movie.popularity}</p>
+    //     <p>Genre: ${movie.genres.map(genre => genre.name).join(', ')}</p>
+    //     <p>ABOUT: ${movie.overview}</p>
+    //     <button id="addToLibrary">Add to my library</button>
+    // `;
+
+    // Show the pop-up
+    popUpContainer.style.display = 'flex';
+
+    console.log(movie.title)
+
+    // Close pop-up event
+    document.getElementById('closePopUp').onclick = function() {
+        popUpContainer.style.display = 'none';
+    };
+};
