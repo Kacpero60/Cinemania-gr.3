@@ -1,0 +1,34 @@
+.form, .select {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    margin: 5px;
+
+}
+
+.gallery {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+}
+
+.gallery img {
+    height: auto;
+    width: 395px;
+    border-radius: 5px;
+}
+
+.movie {
+    position: relative;
+}
+
+.movie-title {
+    position: absolute;
+    color: white;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
