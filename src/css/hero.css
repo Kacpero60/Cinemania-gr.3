@@ -1,14 +1,9 @@
-body {
-  background-color: var(--black-color);
-  height: 100vh;
-  font-family: Roboto, sans-serif;
-}
-
 .hero.container {
+  font-family: Roboto, sans-serif;
   width: 100%;
   height: 380px;
   background: linear-gradient(83deg, #111 36.85%, rgba(17, 17, 17, 0) 60.05%),
-    url(../images/Hero_mobile.png) no-repeat;
+    url(./images/Hero_mobile.png) no-repeat;
   background-size: contain;
   background-position: right;
 }
@@ -60,7 +55,7 @@ body {
   .hero.container {
     height: 372px;
     background: linear-gradient(83deg, #111 36.85%, rgba(17, 17, 17, 0) 60.05%),
-      url(../images/Hero_tablet.png) no-repeat;
+      url(./images/Hero_tablet.png) no-repeat;
     background-size: contain;
     background-position: right;
   }
@@ -90,7 +85,7 @@ body {
   .hero.container {
     height: 660px;
     background: linear-gradient(83deg, #111 36.85%, rgba(17, 17, 17, 0) 60.05%),
-      url(../images/Hero_desktop.png) no-repeat;
+      url(./images/Hero_desktop.png) no-repeat;
     background-size: contain;
     background-position: right;
   }
