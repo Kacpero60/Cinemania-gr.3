@@ -21,10 +21,12 @@ export async function openPopUp(movie, apikey) {
 
     popUpDescription.innerHTML = `
         <h2>${movie.title}</h2>
-        <p>Vote / Votes: ${movie.vote_average} / ${movie.vote_count}</p>
-        <p>Popularity: ${movie.popularity}</p>
-        <p>Genre: ${genreNames.length > 0 ? genreNames.join(', ') : ''}</p>
-        <p>ABOUT: ${movie.overview}</p>
+        <p class="pop-up-description-data vote" >Vote / Votes: <span> ${movie.vote_average} / ${movie.vote_count}</span></p>
+        <p class="pop-up-description-data popularity">Popularity: <span>${movie.popularity}</span></p>
+        <p class="pop-up-description-data gendre">Genre: <span>${genreNames.length > 0 ? genreNames.join(', ') : ''}</span></p>
+        <p class="pop-up-description-data about"> ABOUT:</p>
+        <p class="pop-up-description-data about-desc"> ${movie.overview}</p>
+        <button class="buttonAddToMyLibrary" id="buttonAddToMyLibrary">Add to my</button>
     `;
 
     // Show the pop-up
