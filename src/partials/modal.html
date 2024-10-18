@@ -1,12 +1,28 @@
 <link rel="stylesheet" href="./css/modal.css" />
-<div class="background-modal">
+<div class="background-modal" id="background-modal">
   <div class="modal-window-details">
     <div class="photo-modal-details"></div>
     <div class="modal-all-details">
       <h3 class="header-details"></h3>
-      <p class="modal-detail">Vote / Votes<span class="span-details"></span></p>
-      <p class="modal-detail">Popularity<span class="span-details"></span></p>
-      <p class="modal-detail">Genre<span class="span-details"></span></p>
+      <p class="modal-detail">
+        Vote / Votes<span class="span-details vote-span-details"></span>
+      </p>
+      <p class="modal-detail">
+        Popularity<span class="span-details popularity-span-details"></span>
+      </p>
+      <p class="modal-detail">
+        Genre<span class="span-details genre-span-details"></span>
+      </p>
     </div>
+    <button
+      type="button"
+      id="closed-modal-details"
+      class="closed-modal-details"
+    >
+      <svg width="10.5" height="10.5" class="closed-modal-details-cvg">
+        <use href="images/icon_modal.svg#icon-closed"></use>
+      </svg>
+    </button>
   </div>
 </div>
+<script type="module" src="js/modal.js"></script>

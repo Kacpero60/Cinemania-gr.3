@@ -5,7 +5,7 @@
   border-radius: 20px;
   box-shadow: 1px 1px 14px 4px rgba(255, 107, 8, 0.42);
   display: flex;
-  justify-content: center;
+  gap: 20px;
   position: relative;
   padding: 60px;
 }
@@ -26,4 +26,33 @@
   font-weight: 500;
   font-size: 16px;
   line-height: 18.75px;
+}
+
+.closed-modal-details {
+  position: absolute;
+  top: 40px;
+  right: 40px;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(17, 17, 17, 0);
+  border: none;
+  cursor: pointer;
+}
+
+.closed-modal-details-svg {
+  fill: rgba(248, 248, 248, 1);
+}
+
+.closed-modal-details-svg:hover {
+  fill: rgba(248, 119, 25, 1);
+}
+
+.image-deteils {
+  width: 375px;
+  height: 478px;
+  border-radius: 5px;
+  box-shadow: 1px 1px 24px 2px rgba(1, 1, 1, 0.45);
 }
