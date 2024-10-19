@@ -98,7 +98,7 @@
     margin: 0;
     transition: margin 0.6s;
 
-    .footer-svg {
+   /* .footer-svg {
       width: 250px;
       height: 65px;
       position: absolute;
@@ -115,7 +115,7 @@
       --stroke-delay: 0.1s;
       --offset: 180px;
     }
-  }
+  }*/
 
   @media tablet {
     margin-bottom: 10px;
