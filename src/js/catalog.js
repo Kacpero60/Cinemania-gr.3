@@ -1,3 +1,5 @@
+import { openPopUp } from './pop-up.js'; // Importuj funkcje z pop-up.js
+
 const apikey = '26ee83a5e26d7fcb87f8d8380af6bd82';
 const gallery = document.querySelector(".gallery");
 let currentPage = 1;
@@ -31,7 +33,6 @@ async function selector() {
 async function populateYears() {
     const yearSelect = document.getElementById('yearSelect');
     const currentYear = new Date().getFullYear(); 
-
 
     for (let year = currentYear; year >= 1980; year--) {
         const option = document.createElement('option');
@@ -155,17 +156,22 @@ async function popularMovies(page = 1, selectedCountry = '', selectedYear = '') 
                 movieEl.appendChild(imgEl);
                 gallery.appendChild(movieEl);
                 movieEl.appendChild(titleEl);
+
+                movieEl.addEventListener("click", () => {
+                    openPopUp(movie, apikey); // Przekazanie apikey
+                });
             }
         } else {
-                gallery.textContent =  'OOPS...We are very sorry! You dont have any results matching your search.';
+            gallery.textContent = 'OOPS...We are very sorry! You dont have any results matching your search.';
         }
-
-        totalPages = data.total_pages;
-        renderBtn();
-        } catch (error) {
-                console.error('error fetching movies:', error);
-        }
-            }
+    } catch (error) {
+=======
+totalPages = data.total_pages;
+renderBtn();
+} catch (error) {
+        console.error('error fetching movies:', error);
+    }
+}
 
 //funkcja co wyszukuje wszystkie filmy po wpisaniu keyword'a
 async function searchMovies(keyWord, page = 1) {
@@ -173,61 +179,60 @@ async function searchMovies(keyWord, page = 1) {
     const regionParams = selectedCountry ? `&region=${selectedCountry}` : '';
     const apiURL = `https://api.themoviedb.org/3/search/movie?query=${keyWord}&api_key=${apikey}&language=en-US&include_adult=false&page=${page}${regionParams}${yearParams}`;
 
-    console.log(apiURL); 
+    try {
+        const response = await fetch(apiURL);
+        if (!response.ok) {
+            throw new Error('response was not ok');
+        }
+        const data = await response.json();
 
-try {
-    const response = await fetch(apiURL);
-    if (!response.ok) {
-        throw new Error('response was not ok')
-    }
-    const data = await response.json();
+        gallery.innerHTML = '';
 
-    gallery.innerHTML = '';
+        if (data.results.length > 0) {
+            for (const movie of data.results) {
+                const movieEl = document.createElement('div');
+                movieEl.className = 'movie';
 
-if (data.results.length > 0) {
-    for (const movie of data.results) {
-        const movieEl = document.createElement('div');
-        movieEl.className = 'movie';
+                //pobieranie obrazów dla danego filmu
+                const imageResponse = await fetch(`https://api.themoviedb.org/3/movie/${movie.id}/images?api_key=${apikey}`);
+                const imageData = await imageResponse.json();
+
+                //sprawdzanie czy są dostępne postery
+                if (imageData.posters.length > 0) {
+                    const imgEl = document.createElement('img');
+                    imgEl.src = `https://image.tmdb.org/t/p/w500${imageData.posters[0].file_path}`; 
+                    movieEl.appendChild(imgEl);
+                }
+
+                //tytuł filmu
+                const titleEl = document.createElement('p');
+                titleEl.textContent = movie.title;
+                titleEl.className = 'movie-title';
 
 
-     // pobrane obrazy dla danego filmu
-     const imageResponse = await fetch(`https://api.themoviedb.org/3/movie/${movie.id}/images?api_key=${apikey}`);
-     const imageData = await imageResponse.json();
-
-     // sprawdzanie czy są dostępne postery
-     if (imageData.posters.length > 0) {
-         const imgEl = document.createElement('img');
-         imgEl.src = `https://image.tmdb.org/t/p/w500${imageData.posters[0].file_path}`; 
-         movieEl.appendChild(imgEl);
-     }
-        //tytuł filmu
-        const titleEl = document.createElement('p')
-        titleEl.textContent = movie.title
-        titleEl.className = 'movie-title';
-
-        gallery.appendChild(movieEl);
-        movieEl.appendChild(titleEl);
-    }
-} else {
-        gallery.textContent =  'OOPS...We are very sorry! You dont have any results matching your search.';
-}
-
+                gallery.appendChild(movieEl);
+                movieEl.appendChild(titleEl);
+            }
+        } else {
+            gallery.textContent = 'OOPS...We are very sorry! You dont have any results matching your search.';
+        }
+    } catch (error) {
+=======
 totalPages = data.total_pages;
 renderBtn();
 } catch (error) {
         console.error('error fetching movies:', error);
+    }
 }
-}
-
 
 //wyszukiwanie przycisku
 document.getElementById('searchButton').addEventListener('click', function(event) {
     event.preventDefault();
 
     //wartość inputa
-     keyWord = document.getElementById('searchInput').value;
-     selectedYear = document.getElementById('yearSelect').value;
-     selectedCountry = document.getElementById('countrySelect').value;
+    keyWord = document.getElementById('searchInput').value;
+    selectedYear = document.getElementById('yearSelect').value;
+    selectedCountry = document.getElementById('countrySelect').value;
 
     if (keyWord === "") {
         return;
@@ -236,7 +241,6 @@ document.getElementById('searchButton').addEventListener('click', function(event
     //wywołanie searchMovies
     currentPage = 1;
     searchMovies(keyWord);
-
 });
 
 //wywołanie popularMovies po załadowaniu strony
