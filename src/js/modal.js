@@ -16,4 +16,5 @@ btnMoreDetails.addEventListener('click', event => {
 btnClosedModalDetails.addEventListener('click', event => {
   event.preventDefault();
   modalWindowDetails.style.display = 'none';
+  photoModalDetails.innerHTML = '';
 });
