@@ -25,8 +25,8 @@
 }
 
 .footer-rights {
-  @include font(400, 16px, 1.19, null);
-  color: ;
+  @include font(400, 16px, 1.19);
+  color: #b7b7b7;
   margin-right: 5px;
 }
 
@@ -37,7 +37,7 @@
 
 .footer-2 {
   @include font(400, 16px, 1.19, null);
-  color: ;
+  color: #b7b7b7;
 }
 
 .footer-icon {
@@ -47,7 +47,7 @@
 
 .footer-txt {
   @include font(400, 16px, 1.19);
-  color: ;
+  color: #b7b7b7;
 }
 
 .footer-link {
@@ -80,13 +80,9 @@
   &--animation:hover::before {
     transform: scaleX(0);
     transform-origin: right;
-    color: ;
+    color: #b7b7b7;
     background-color: ;
   }
-}
-
-:root {
-  --line-active: #f87719;
 }
 
 .footer-txt-2 {
