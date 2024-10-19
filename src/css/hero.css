@@ -3,9 +3,9 @@
   width: 100%;
   height: 100%;
   background: linear-gradient(83deg, #111 36.85%, rgba(17, 17, 17, 0) 60.05%),
-    url(../images/Hero_mobile.png) no-repeat;
-  background-size: contain;
-  background-position: right;
+    url(../images/Hero_desktop.png) no-repeat;
+  background-size: cover;
+  background-position: center;
 }
 
 .intro {
@@ -21,7 +21,7 @@
 
 .title {
   font-size: 32px;
-  font-style: normal;
+  /* font-style: normal; */
   font-weight: 700;
 }
 
@@ -30,6 +30,7 @@
   font-style: normal;
   font-weight: 400;
   max-width: 177px;
+  max-height: 66px;
   overflow: hidden;
 }
 
@@ -37,64 +38,46 @@
   display: flex;
   gap: 8px;
   font-family: inherit;
+  padding-bottom: 54px;
 }
 
-.hero-btn.cta {
+.hero-btn {
   display: inline-flex;
   align-items: center;
   gap: 10px;
   padding: 12px 24px;
-  background: linear-gradient(141deg, #ffc226 9.4%, #f84119 91.91%);
   border-radius: 74px;
-  color: var(--black-color, #111);
   text-align: center;
   font-size: 12px;
-  font-style: normal;
   font-weight: 500;
+}
+
+.hero-btn.cta {
+  background: linear-gradient(141deg, #ffc226 9.4%, #f84119 91.91%);
+  color: var(--black-color, #111);
   margin-left: 20px;
   border: none;
-  cursor: pointer;
 }
 
 .hero-btn.more-details {
-  display: inline-flex;
-  padding: 12px 24px;
-  align-items: flex-start;
-  gap: 10px;
-  border-radius: 74px;
-  border: 1px solid #fff;
-  color: #fff;
-  text-align: center;
-  font-size: 12px;
-  font-style: normal;
-  font-weight: 500;
-  line-height: normal;
-  cursor: pointer;
-  margin-left: 8px;
   background: transparent;
+  color: #fff;
+  margin-left: 8px;
+  border: 1px solid #fff;
 }
 
-@media (min-width: 768px) {
+@media screen and (min-width: 768px) {
   .hero.container {
     height: 372px;
-    background: linear-gradient(83deg, #111 36.85%, rgba(17, 17, 17, 0) 60.05%),
-      url(../images/Hero_tablet.png) no-repeat;
-    background-size: contain;
-    background-position: right;
+    /* background: linear-gradient(83deg, #111 36.85%, rgba(17, 17, 17, 0) 60.05%),
+      url(../images/Hero_tablet.png) no-repeat; */
+    /* background-position: center right; */
   }
   .intro {
     max-width: 445px;
     padding-top: 62px;
     padding-left: 32px;
     margin-bottom: 32px;
-  }
-  .hero-btn {
-    font-size: 14px;
-    height: 40px;
-  }
-
-  .hero-btn.cta {
-    margin-left: 32px;
   }
 
   .title {
@@ -103,23 +86,36 @@
 
   .text {
     max-width: 254px;
-    height: 49px;
+    max-height: 49px;
+  }
+
+  .buttons {
+    padding-bottom: 63px;
+  }
+
+  .hero-btn {
+    font-size: 14px;
+    height: 40px;
+  }
+
+  .hero-btn.cta {
+    margin-left: 32px;
   }
 }
 
-@media (min-width: 768px) and (max-width: 1279px) {
+@media screen and (min-width: 768px) and (max-width: 1279px) {
   .hero-btn {
     padding: 10px 24px;
   }
 }
 
-@media (min-width: 1280px) {
+@media screen and (min-width: 1280px) {
   .hero.container {
     height: 660px;
-    background: linear-gradient(83deg, #111 36.85%, rgba(17, 17, 17, 0) 60.05%),
+    /* background: linear-gradient(83deg, #111 36.85%, rgba(17, 17, 17, 0) 60.05%),
       url(../images/Hero_desktop.png) no-repeat;
     background-size: contain;
-    background-position: right;
+    background-position: right; */
   }
   .intro {
     max-width: 670px;
@@ -127,19 +123,21 @@
     padding-top: 118px;
     margin-left: 135px;
   }
-  .buttons {
-    margin-left: 135px;
-  }
-  .hero-btn {
-    font-size: 16px;
-    height: 48px;
-  }
+
   .title {
     font-size: 64px;
   }
   .text {
     font-size: 16px;
     max-width: 367px;
-    height: 59px;
+    max-height: 59px;
+  }
+  .buttons {
+    margin-left: 135px;
+  }
+  .hero-btn {
+    font-size: 16px;
+    height: 48px;
+    cursor: pointer;
   }
 }
