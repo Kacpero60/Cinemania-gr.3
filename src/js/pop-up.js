@@ -4,6 +4,10 @@ export async function openPopUp(movie, apikey) {
     const popUpImage = document.getElementById('popUpImage');
     const popUpDescription = document.getElementById('popUpDescription');
 
+    console.log(popUpContainer)
+    console.log(popUpImage)
+    console.log(popUpDescription)
+
     // Clear previous content
     popUpImage.innerHTML = ''; // Clear any existing image
     popUpDescription.innerHTML = ''; // Clear any existing description

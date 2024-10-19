@@ -1,4 +1,4 @@
-
+document.addEventListener("DOMContentLoaded", () => {
 // PODŚWIETLENIE AKTUALNEJ STRONY
 const container = document.querySelector(".nav-list");
 const links = container.querySelectorAll(".navigation");
@@ -15,13 +15,15 @@ for (let i = 0; i < links.length; i++) {
 }
 
 // OTWIERANIE MENU MOBILNEGO
+
   const buttonMenu = document.querySelector(".button-menu");
   const navMobile = document.querySelector(".backdrop");
-  
 
+  if (buttonMenu && navMobile) {
     buttonMenu.addEventListener("click", () => {
         navMobile.classList.toggle("hidden");
     });
+} 
 
 // ZAMYKANIE MENU MOBILNEGO
     window.addEventListener("resize", () => {
@@ -29,4 +31,4 @@ for (let i = 0; i < links.length; i++) {
         navMobile.classList.remove("hidden");
     }
 });
-
+});
