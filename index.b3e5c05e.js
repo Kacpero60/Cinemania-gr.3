@@ -1,0 +1,2 @@
+!function(){var e=document.querySelector(".more-details"),t=document.getElementById("background-modal"),n=document.getElementById("closed-modal-details"),l=document.querySelector(".photo-modal-details");e.addEventListener("click",(function(e){e.preventDefault(),t.style.display="flex";var n=document.createElement("img");n.src="",n.className="image-deteils",console.log(n.src),l.append(n)})),n.addEventListener("click",(function(e){e.preventDefault(),t.style.display="none",l.innerHTML=""}))}();
+//# sourceMappingURL=index.b3e5c05e.js.map
