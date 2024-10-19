@@ -9,24 +9,26 @@
     <script type="module" src="js/catalog.js"></script>
 </head>
 <body>
+    <div class="search-catalog"> 
     <!--formularz do wyszukiwania filmów!-->
     <form class="form" id="form">
         <input type="text" id="searchInput" placeholder="Search" />
         <button type="submit" id="searchButton">search</button>
     </form>
     
-<div class="select">
-    <select id="countrySelect">
-        <option value="">Country</option>
-    </select>
-
-    <select id="yearSelect">
-        <option value="">Year</option>
-    </select>
+    <div class="select">
+        <select id="countrySelect">
+            <option value="">Country</option>
+        </select>
+        
+        <select id="yearSelect">
+            <option value="">Year</option>
+        </select>
+    </div>
 </div>
 
     <div class="gallery" id="gallery"></div>
 
-    <div id="pagination"></div>
+    <div class="pagination" id="pagination"></div>
 </body>
 </html>

@@ -1,4 +1,7 @@
 <link rel="stylesheet" href="./css/header.css">
+<script type="module" src="js/header.js"></script>
+<link rel="stylesheet" href="css/header.css">
+<link rel="stylesheet" href="css/styles.css">
 <header class="header">
     <div class="menu">
         <nav class="nav">
@@ -11,13 +14,24 @@
             </div>
             <ul class="list nav-list">
                 <li><a href="index.html" class="navigation link navigation-activ">HOME</a></li>
-                <li><a href="" class="navigation link">CATALOG</a></li>
-                <li><a href="" class="navigation link">MY LIBRARY</a></li>
+                <li><a href="partials/catalog.html" class="navigation link">CATALOG</a></li>
+                <li><a href="partials/library.html" class="navigation link">MY LIBRARY</a></li>
             </ul>
             <ul class="list nav-list-mobile">
                 <li><a class="navigation link">MENU</a></li>
             </ul>
+            <button class="navigation button-menu">MENU</button>
             <button class="toggle-button">Toggle Button</button>
         </nav>
     </div>
+    <div class="backdrop">
+        <div class="nav-mobile hidden">
+            <ul class="list nav-list-mobile">
+                <li><a href="index.html" class="navigation text-mobile link">HOME</a></li>
+                <li><a href="partials/catalog.html" class="navigation text-mobile link">CATALOG</a></li>
+                <li><a href="partials/library.html" class="navigation text-mobile link">MY LIBRARY</a></li>
+            </ul>
+        </div>
+    </div>
 </header>
+
