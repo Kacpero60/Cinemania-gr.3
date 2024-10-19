@@ -51,10 +51,12 @@ async function renderBtn() {
    if (currentPage >= 1) {
         const prevBtn = document.createElement('button');
         prevBtn.textContent = '<';
+        prevBtn.classList.add('prevnext-btn');
 
+        
         prevBtn.addEventListener('click', () => {
             currentPage--;
-
+            
             if (keyWord) {
                 searchMovies(keyWord, currentPage)
             } else {
@@ -63,12 +65,17 @@ async function renderBtn() {
             renderBtn();
         });
         paginationBtn.appendChild(prevBtn);
-   }
-
-   //wyświetlenie pierwszych trzech stron
-   for (let i = 1; i <= Math.min(3, totalPages); i++) {
+    }
+    
+    //wyświetlenie pierwszych trzech stron
+    for (let i = 1; i <= Math.min(3, totalPages); i++) {
         const btn = document.createElement('button');
         btn.textContent = i;
+        btn.classList.add('pagination-btn');
+        
+        if( i === currentPage) {
+            btn.classList.add('active');
+        }
 
         btn.addEventListener('click', () => {
             currentPage = i;
@@ -89,10 +96,12 @@ async function renderBtn() {
        const dots =document.createElement('div');
        dots.textContent = '...';
        paginationBtn.appendChild(dots);
+       dots.classList.add('dots');
        
        //wyswietlenie 24 strony
        const lastBtn = document.createElement('button');
        lastBtn.textContent = 24;
+       lastBtn.classList.add('pagination-btn');
        
        lastBtn.addEventListener('click', () => {
            currentPage = 24;
@@ -111,6 +120,7 @@ async function renderBtn() {
    if (currentPage < totalPages) {
     const nextBtn = document.createElement('button');
     nextBtn.textContent = '>';
+    nextBtn.classList.add('prevnext-btn');
 
     nextBtn.addEventListener('click', () => {
         currentPage++;
