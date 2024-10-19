@@ -1,0 +1,118 @@
+/* HEADER Z CATALOG.HTML */
+/*css do headera w catalog.html*/
+.menu {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--black-color);
+    height: 60px;
+ }
+ 
+ .link {
+    text-decoration: none;
+ }
+ 
+ .list {
+    list-style: none;
+ }
+ 
+ .nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0px 32px;
+    flex-grow: 1;
+ }
+ 
+ .nav-list {
+    display: flex;
+    flex-flow: nowrap;
+    padding: 8px 0;
+    gap: 40px;
+    margin: 0 auto;
+ }
+ 
+ .cinemania {
+    color: var(--white-color);
+    font-family: Roboto;
+    font-size: 24px;
+    font-weight: 400;
+    line-height: 28.13px;
+    text-align: center;
+ }
+ 
+ .logo {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    z-index: 5;
+ }
+ 
+ .navigation {
+    color: var(--grey-color);
+    font-size: 14px;
+    font-family: "Roboto", sans-serif;
+    font-weight: 500;
+ }
+ 
+ .navigation:active {
+    color: var(--orange-color);
+ }
+ 
+ .nav-mobile {
+    transform: translate(-100%);
+    transition-duration: 500ms;
+    width: 204px;
+    height: 100%;
+    background-color: var(--black-color);
+    border-radius: 0 8px 8px 0;
+    position: absolute;
+    top: 0;
+ }
+ 
+ .nav-list-mobile {
+    display: flex;
+    gap: 24px;
+    flex-direction: column;
+    margin-left: 20px;
+    margin-top: 88px;
+ }
+ 
+ .text-mobile {
+    color: var(--white-color);
+    font-weight: 400;
+ 
+ }
+ 
+ .navigation-activ {
+    color: var(--orange-color);
+ }
+ 
+ .button-menu {
+    background-color: transparent;
+    border: none;
+    font-family: "Roboto", sans-serif;
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 14.06px;
+    text-align: center;
+    color: var(--grey-color);
+    cursor: pointer;
+    display: none;
+    z-index: 5;
+ }
+ 
+ .backdrop {
+    width: 100%;
+    height: 100%;
+    background-color: #FFFFFF33;
+    ;
+    position: fixed;
+    top: 0;
+    transform: translate(-100%);
+    transition-duration: 500ms;
+ }
+ 
+ .hidden {
+    transform: translate(0%);
+ }

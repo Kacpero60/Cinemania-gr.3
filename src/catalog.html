@@ -4,33 +4,17 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Catalog</title>
-        <link rel="stylesheet" href="../css/styles.css">
-        <link rel="stylesheet" href="../css/catalog.css"/>
-        <script type="module" src="../js/catalog.js"></script>
-        <script type="module" src="../js/hero.js"></script>
-        <script type="module" src="../js/header.js"></script>
+        <link rel="stylesheet" href="./css/styles.css">
+        <link rel="stylesheet" href="./css/catalog.css"/>
+        <script type="module" src="./js/catalog.js"></script>
+        <script type="module" src="./js/hero.js"></script>
+        <script type="module" src="./js/header.js"></script>
     </head>
-    
     <body>
-        <!--header!-->
-        <header class="header">
-            <div class="menu">
-                <nav class="nav">
-                    <div class="logo">
-                        <svg width="48" height="48">
-                            <use href="../images/icons.svg#icon-logo"></use>
-                        </svg>
-                        <a href="../index.html" class="link"><span class="cinemania">Cinemania</span></a>
-                    </div>
-                    <ul class="list nav-list">
-                        <li><a href="../index.html" class="navigation link">HOME</a></li>
-                        <li><a href="catalog.html" class="navigation link navigation-activ">CATALOG</a></li>
-                        <li><a href="library.html" class="navigation link">MY LIBRARY</a></li>
-                    </ul>
-                </nav>
-            </div>
-        </header>
-
+        
+        <include src="partials/header2.html"></include>
+        
+        <main>
         <!--hero!-->
         <div class="hero container">
             <div class="intro">
@@ -67,5 +51,11 @@
     <div class="gallery" id="gallery"></div>
 
     <div class="pagination" id="pagination"></div>
+</main>
+      <!-- FOOTER -->
+      <include src="partials/footer.html"></include>
+      <!-- POP UP -->
+      <include src="partials/pop-up.html"></include>
 </body>
+
 </html>

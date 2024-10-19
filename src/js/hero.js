@@ -70,7 +70,7 @@ const setDefaultHero = () => {
   heroDescription.style.height = 'auto';
   watchTrailerBtn.textContent = 'Get started';
   watchTrailerBtn.onclick = () => {
-    window.location.href = 'partials/catalog.html';
+    window.location.href = 'catalog.html';
   };
   moreDetailsBtn.style.display = 'none';
 };

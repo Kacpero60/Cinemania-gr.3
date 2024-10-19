@@ -102,7 +102,7 @@ body {
     display: flex;
 }
 
-/*css do headera w catalog.html*/
+/* css do headera w catalog.html
 .menu {
     display: flex;
     justify-content: space-between;
@@ -219,7 +219,7 @@ body {
  .hidden {
     transform: translate(0%);
  
- }
+ } */
 
  @media screen and (max-width: 767px) {
 
