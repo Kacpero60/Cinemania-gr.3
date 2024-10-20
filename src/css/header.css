@@ -52,6 +52,7 @@
    font-weight: 500;
 }
 
+.navigation:hover,
 .navigation:active {
    color: var(--orange-color);
 }
@@ -115,6 +116,25 @@
 
 }
 
+/* BUTTON */
+
+.toggle-button {
+   width: 60px;
+   height: 24px;
+   border-radius: 194px;
+   border: none;
+   background: linear-gradient(141.22deg, #FFC226 9.4%, #F84119 91.91%);
+   display: flex;
+   gap: 24px;
+   align-items: center;
+   padding: 0px 4px;
+   cursor: pointer;
+}
+.dark {
+   display: none;
+}
+
+
 @media screen and (max-width: 767px) {
 
    .button-menu,
@@ -140,4 +160,17 @@
    .logo {
       width: 46px;
    }
+   .toggle-button{
+      width: 44px;
+      height: 18px;
+      padding: 0px 3px;
+      gap: 14px;
+      }
+}
+
+body[data-theme=dark] .menu {
+   background-color: var(--black-color);
+}
+body[data-theme=light] .menu {
+   background-color: var(--white-color);
 }
