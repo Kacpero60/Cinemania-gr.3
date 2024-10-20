@@ -17,15 +17,18 @@ for (let i = 0; i < links.length; i++) {
 // OTWIERANIE MENU MOBILNEGO
   const buttonMenu = document.querySelector(".button-menu");
   const navMobile = document.querySelector(".backdrop");
-  
-  if (buttonMenu && navMobile) {
+
+
+    // Sprawdzenie, czy navMobile istnieje
+    if (navMobile) {
       buttonMenu.addEventListener("click", () => {
-        navMobile.classList.toggle("hidden");
-    })
-  };
-  
-  // ZAMYKANIE MENU MOBILNEGO
-  window.addEventListener("resize", () => {
+          navMobile.classList.toggle("hidden");
+      });
+    };
+
+// ZAMYKANIE MENU MOBILNEGO
+    window.addEventListener("resize", () => {
+
     if (window.innerWidth > 767) { 
       navMobile.classList.remove("hidden");
     }

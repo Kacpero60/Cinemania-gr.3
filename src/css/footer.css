@@ -4,28 +4,12 @@
   display: flex;
   align-items: center;
   justify-content: center;
-
-  @media (max-width: 767px) {
-    flex-direction: column;
-
-    .footer-2 {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .footer-2 {
-      margin-top: 10px;
-    }
-    .footer-txt {
-      margin-right: 5px;
-    }
-  }
 }
 
 .footer-rights {
-  color: #b7b7b7;
+  font-weight: 400; /* Assuming this is what '400' means */
+  font-size: 16px; /* Font size */
+  line-height: 1.19; /* Line height */
   margin-right: 5px;
 }
 
@@ -35,90 +19,133 @@
 }
 
 .footer-2 {
-  color: #b7b7b7;
+  font-weight: 400; /* Assuming this is what '400' means */
+  font-size: 16px; /* Font size */
+  line-height: 1.19; /* Line height */
+  ; /* Assign a valid color */
 }
 
 .footer-icon {
-  margin: 0 10px 0 10px;
+  margin: 0 10px;
   animation: Scale 0.7s ease infinite;
 }
 
 .footer-txt {
-  color: #b7b7b7;
+  font-weight: 400; /* Assuming this is what '400' means */
+  font-size: 16px; /* Font size */
+  line-height: 1.19; /* Line height */
 }
 
 .footer-link {
-  color: #b7b7b7;
+  font-weight: 400; /* Assuming this is what '400' means */
+  font-size: 16px; /* Font size */
+  line-height: 1.19; /* Line height */
+}
 
-  &--active:hover {
-    color: orange;
-  }
+.footer-link--active:hover {
+  color: orange;
+}
 
-  &--animation {
-    text-decoration: none;
-    position: relative;
-    padding-bottom: 1px;
-  }
+.footer-link--animation {
+  text-decoration: none;
+  position: relative;
+  padding-bottom: 1px;
+}
 
-  &--animation::before {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    height: 1px;
-    width: 100%;
-    background-color: ;
-    transform: scaleX(1);
-    transform-origin: left;
-    transition: transform 0.3s ease-out;
-  }
+.footer-link--animation::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 1px;
+  width: 100%;
+  background-color: #000; /* Assign a valid color */
+  transform: scaleX(1);
+  transform-origin: left;
+  transition: transform 0.3s ease-out;
+}
 
-  &--animation:hover::before {
-    transform: scaleX(0);
-    transform-origin: right;
-    color: #b7b7b7;
-    background-color: ;
-  }
+.footer-link--animation:hover::before {
+  transform: scaleX(0);
+  transform-origin: right;
+  color: #000; /* Assign a valid color */
+  background-color: #000; /* Assign a valid color */
+}
+
+:root {
+  --line-active: #f87719;
 }
 
 .footer-txt-2 {
   margin-top: 10px;
   margin-left: 5px;
-  color: ;
+  color: #000; /* Assign a valid color */
+}
 
-  .footer-link-2 {
-    display: inline-block;
-    position: relative;
-    text-decoration: none;
-    color: inherit;
-    margin: 0;
-    transition: margin 0.6s;
+.footer-link-2 {
+  display: inline-block;
+  position: relative;
+  text-decoration: none;
+  color: inherit;
+  margin: 0;
+  transition: margin 0.6s;
+}
 
-    /* .footer-svg {
-      width: 250px;
-      height: 65px;
-      position: absolute;
-      left: 50%;
-      bottom: 0;
-      transform: translate(-50%, 17px) translateZ(0);
-      fill: none;
-      transition: stroke 0.55s ease var(--stroke-delay, 0s),
-        stroke-dasharray 0.75s;
-    }
-    &:hover {
-      --spacing: 4px;
-      --stroke: ;
-      --stroke-delay: 0.1s;
-      --offset: 180px;
-    }
-  }*/
+.footer-link-2 .footer-svg {
+  width: 250px;
+  height: 65px;
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  transform: translate(-50%, 17px) translateZ(0);
+  fill: none;
+  transition: stroke 0.55s ease var(--stroke-delay, 0s),
+    stroke-dasharray 0.75s;
+}
 
-    @media tablet {
-      margin-bottom: 10px;
-    }
+.footer-link-2:hover {
+  --spacing: 4px;
+  --stroke: #000; /* Assign a valid color */
+  --stroke-delay: 0.1s;
+  --offset: 180px;
+}
 
-    @media desktop {
-      margin-bottom: 10px;
-    }
+/* Media Queries should be at the top level */
+@media (max-width: 767px) {
+  .footer-container {
+    flex-direction: column;
   }
+
+  .footer-2 {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    margin-top: 10px;
+  }
+
+  .footer-txt {
+    margin-right: 5px;
+  }
+}
+
+@media (min-width: 768px) {
+  .footer-txt-2 {
+    margin-bottom: 10px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .footer-txt-2 {
+    margin-bottom: 10px;
+  }
+}
+
+.visually-hidden {
+  display: none;
+}
+
+.footer {
+  background-color: #000000;
+  color: #B7B7B7;
 }
