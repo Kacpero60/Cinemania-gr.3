@@ -1,0 +1,2 @@
+const e=document.querySelector(".nav-list").querySelectorAll(".navigation");for(let t=0;t<e.length;t++)e[t].addEventListener("click",(function(){let e=document.querySelector(".navigation-active");e&&e.classList.remove("navigation-active"),this.classList.add("navigation-active")}));const t=document.querySelector(".button-menu"),n=document.querySelector(".backdrop");n&&t.addEventListener("click",(()=>{n.classList.toggle("hidden")})),window.addEventListener("resize",(()=>{window.innerWidth>767&&n.classList.remove("hidden")}));
+//# sourceMappingURL=index.18758f70.js.map
