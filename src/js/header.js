@@ -19,9 +19,12 @@ for (let i = 0; i < links.length; i++) {
   const navMobile = document.querySelector(".backdrop");
   
 
-    buttonMenu.addEventListener("click", () => {
-        navMobile.classList.toggle("hidden");
-    });
+    // Sprawdzenie, czy navMobile istnieje
+    if (navMobile) {
+      buttonMenu.addEventListener("click", () => {
+          navMobile.classList.toggle("hidden");
+      });
+    } 
 
 // ZAMYKANIE MENU MOBILNEGO
     window.addEventListener("resize", () => {

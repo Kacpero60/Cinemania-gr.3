@@ -1,80 +1,97 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Catalog</title>
-        <link rel="stylesheet" href="../css/styles.css">
-        <link rel="stylesheet" href="../css/catalog.css"/>
-        <script type="module" src="../js/catalog.js"></script>
-        <script type="module" src="../js/hero.js"></script>
-        <script type="module" src="../js/header.js"></script>
-    </head>
-    
-    <body>
-        <!--header!-->
-        <header class="header">
-            <div class="menu">
-                <nav class="nav">
-                    <div class="logo">
-                        <svg width="48" height="48">
-                            <use href="../images/icons.svg#icon-logo"></use>
-                        </svg>
-                        <a href="../index.html" class="link"><span class="cinemania">Cinemania</span></a>
-                    </div>
-                    <ul class="list nav-list">
-                        <li><a href="../index.html" class="navigation link">HOME</a></li>
-                        <li><a href="catalog.html" class="navigation link navigation-activ">CATALOG</a></li>
-                        <li><a href="library.html" class="navigation link">MY LIBRARY</a></li>
-                    </ul>
-                </nav>
-            </div>
-        </header>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Catalog</title>
+    <link rel="stylesheet" href="../css/styles.css" />
+    <link rel="stylesheet" href="../css/catalog.css" />
+    <script type="module" src="../js/catalog.js"></script>
+    <script type="module" src="../js/hero.js"></script>
+    <script type="module" src="../js/header.js"></script>
+  </head>
 
-        <!--hero!-->
-        <div class="hero container">
-            <div class="intro">
-              <h1 class="title"></h1>
-              <p class="text"></p>
-            </div>
-            <div class="buttons">
-              <button type="button" class="hero-btn cta">Get started</button>
-              <button type="button" class="hero-btn more-details" style="display: none">
-                More details
-              </button>
-            </div>
-          </div>
-    <div class="search-catalog"> 
-    <!--formularz do wyszukiwania filmów!-->
-    <form class="form" id="form">
-        <input type="text" id="searchInput" class="search" placeholder="Search" />
-        <div class="search-close" id="clearButton" style="display: none;">
-            <svg class="close">
-                <use xlink:href="../images/icons.svg#icon-close-icon"></use>
+  <body>
+    <!--header!-->
+    <header class="header">
+      <div class="menu">
+        <nav class="nav">
+          <div class="logo">
+            <svg width="48" height="48">
+              <use href="../images/icons.svg#icon-logo"></use>
             </svg>
+            <a href="../index.html" class="link"
+              ><span class="cinemania">Cinemania</span></a
+            >
+          </div>
+          <ul class="list nav-list">
+            <li><a href="../index.html" class="navigation link">HOME</a></li>
+            <li>
+              <a href="catalog.html" class="navigation link navigation-activ"
+                >CATALOG</a
+              >
+            </li>
+            <li>
+              <a href="library.html" class="navigation link">MY LIBRARY</a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <!--hero!-->
+    <div class="hero container">
+      <div class="intro">
+        <h1 class="title"></h1>
+        <p class="text"></p>
+      </div>
+      <div class="buttons">
+        <button type="button" class="hero-btn cta">Watch trailer</button>
+        <button
+          type="button"
+          class="hero-btn more-details"
+          style="display: none"
+        >
+          More details
+        </button>
+      </div>
+    </div>
+    <div class="search-catalog">
+      <!--formularz do wyszukiwania filmów!-->
+      <form class="form" id="form">
+        <input
+          type="text"
+          id="searchInput"
+          class="search"
+          placeholder="Search"
+        />
+        <div class="search-close" id="clearButton" style="display: none">
+          <svg class="close">
+            <use xlink:href="../images/icons.svg#icon-close-icon"></use>
+          </svg>
         </div>
-    </form>
-    
-    <div class="select">
+      </form>
+
+      <div class="select">
         <select class="search" id="countrySelect">
-            <option value="">Country</option>
+          <option value="">Country</option>
         </select>
-        
+
         <select class="search" id="yearSelect">
-            <option value="">Year</option>
+          <option value="">Year</option>
         </select>
         <button type="submit" id="searchButton" class="search-btn">
-            <div class="search-container"> 
-                <svg class="search-icon">
-                    <use xlink:href="../images/icons.svg#icon-loop"></use>
-                </svg>
-            </div>
+          <div class="search-container">
+            <svg class="search-icon">
+              <use xlink:href="../images/icons.svg#icon-loop"></use>
+            </svg>
+          </div>
         </button>
+      </div>
     </div>
-</div>
 
     <div class="gallery" id="gallery"></div>
 
     <div class="pagination" id="pagination"></div>
-</body>
+  </body>
 </html>
