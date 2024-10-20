@@ -6,6 +6,7 @@
     position: fixed;
     background-color: #11111197;
     color: #FFFFFF;
+    z-index: 999;
 }
 
 .pop-up {

@@ -1,4 +1,4 @@
-import { openPopUp, fetchGenres } from './pop-up.js'; // Importuj funkcje z pop-up.js
+import { openPopUp, fetchGenres } from './pop-up-movie.js'; // Importuj funkcje z pop-up.js
 
 const apikey = '26ee83a5e26d7fcb87f8d8380af6bd82';
 const gallery = document.querySelector(".gallery");
@@ -207,7 +207,7 @@ async function searchMovies(keyWord, page = 1) {
 
 // Inicjalizacja
 async function init() {
-    await fetchGenres();
+    await fetchGenres(apikey);
     await selector();
     await populateYears();
     popularMovies(currentPage); // Domyślnie załaduj popularne filmy
