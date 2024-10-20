@@ -238,6 +238,7 @@ if (data.results.length > 0) {
     const message = document.createElement('p'); 
     message.classList.add('message'); 
     gallery.textContent =  'OOPS...We are very sorry! You dont have any results matching your search.';
+    gallery.innerHTML = '';
     gallery.appendChild(message);
 }
 
