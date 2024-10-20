@@ -41,7 +41,7 @@ export async function openPopUp(movie, apikey) {
 }
 
 // Funkcja do pobierania gatunków
-async function fetchGenres(apikey) {
+export async function fetchGenres(apikey) {
     try {
         const response = await fetch(`https://api.themoviedb.org/3/genre/movie/list?api_key=${apikey}&language=en-US&`);
         const data = await response.json();
