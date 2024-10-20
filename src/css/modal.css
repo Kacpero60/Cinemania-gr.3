@@ -72,8 +72,8 @@
 }
 
 .add-to-my-library {
-  width: 140px;
-  height: 40px;
+  width: 139px;
+  height: 39px;
   border-radius: 74px;
   background-color: rgba(17, 17, 17, 1);
   border: none;
@@ -98,8 +98,8 @@
   border-radius: 74px;
   top: -1px;
   right: -1px;
-  width: calc(100% + 1px);
-  height: calc(100% + 1px);
+  width: calc(100% + 2px);
+  height: calc(100% + 2px);
   border: 1px solid transparent;
   background-image: linear-gradient(
     to top,
