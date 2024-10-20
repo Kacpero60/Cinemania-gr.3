@@ -1,4 +1,3 @@
-document.addEventListener("DOMContentLoaded", () => {
 
 // PODŚWIETLENIE AKTUALNEJ STRONY
 const container = document.querySelector(".nav-list");
@@ -32,23 +31,26 @@ for (let i = 0; i < links.length; i++) {
     }
   });
   
-  navMobile.addEventListener('click', () => {
-     navMobile.classList.remove("hidden");
-  });
+  if (navMobile) {
+    navMobile.addEventListener('click', () => {
+      navMobile.classList.remove("hidden");
+    });
+  };
   
   // BUTTON
   const toggleSwitch = document.querySelector(".toggle-button");
-
-  toggleSwitch.addEventListener('click', () => {
-    const currentTheme = localStorage.getItem("theme");
-    const typeTheme = currentTheme === 'dark' ? 'light' : 'dark';
-    const themes = document.querySelectorAll(".theme");
-
-    document.body.setAttribute('data-theme', typeTheme);
-    localStorage.setItem('theme', typeTheme);
-
-    themes.forEach((theme) => {
-    theme.classList.toggle("dark");
-  });
-  });
-}); 
+  if (toggleSwitch) {
+    
+    toggleSwitch.addEventListener('click', () => {
+      const currentTheme = localStorage.getItem("theme");
+      const typeTheme = currentTheme === 'dark' ? 'light' : 'dark';
+      const themes = document.querySelectorAll(".theme");
+      
+      document.body.setAttribute('data-theme', typeTheme);
+      localStorage.setItem('theme', typeTheme);
+      
+      themes.forEach((theme) => {
+        theme.classList.toggle("dark");
+      });
+    });
+};
