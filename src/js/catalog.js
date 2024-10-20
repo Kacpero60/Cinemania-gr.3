@@ -13,11 +13,11 @@ let genresMap = {};
 // Funkcja, co daje kraje do wyboru
 async function selector() {
     const countrySelect = document.getElementById('countrySelect');
-
+    
     try {
         const response = await fetch(`https://restcountries.com/v3.1/all`);
         const countries = await response.json();
-
+        
         for (let i = 0; i < countries.length; i++) { 
             const country = countries[i];
             const option = document.createElement('option');
@@ -122,7 +122,7 @@ async function popularMovies(page = 1, selectedCountry = '', selectedYear = '') 
     const regionParams = selectedCountry ? `&region=${selectedCountry}` : '';
     const yearParams = selectedYear ? `&primary_release_year=${selectedYear}` : '';
     const apiUrl = `https://api.themoviedb.org/3/movie/popular?api_key=${apikey}&language=en-US&include_adult=false&page=${page}${regionParams}${yearParams}`;
-
+    
     try {
         const response = await fetch(apiUrl);
         if (!response.ok) {
@@ -139,22 +139,22 @@ async function popularMovies(page = 1, selectedCountry = '', selectedYear = '') 
 
                 const imgEl = document.createElement('img');
                 imgEl.src = `https://image.tmdb.org/t/p/w500${movie.poster_path}`; 
-
+                
                 const titleEl = document.createElement('p')
                 titleEl.textContent = movie.title;
                 titleEl.className = 'movie-title';
-
+                
                 const genresEl = document.createElement('p');
                 const genres = movie.genre_ids.map(id => genresMap[id]).filter(name => name).join(', ');
                 const year = movie.release_date.split('-')[0];
                 genresEl.textContent = `${genres} | ${year}`;
                 genresEl.className = 'movie-genres-year';
-
+                
                 movieEl.appendChild(imgEl);
                 movieEl.appendChild(titleEl);
                 movieEl.appendChild(genresEl);
                 gallery.appendChild(movieEl);
-
+                
                 movieEl.addEventListener("click", () => {
                     openPopUp(movie, apikey); // Przekazanie apikey
                 });
@@ -172,7 +172,7 @@ async function searchMovies(keyWord, page = 1) {
     const yearParams = selectedYear ? `&primary_release_year=${selectedYear}` : '';
     const regionParams = selectedCountry ? `&region=${selectedCountry}` : '';
     const apiURL = `https://api.themoviedb.org/3/search/movie?query=${keyWord}&api_key=${apikey}&language=en-US&include_adult=false&page=${page}${regionParams}${yearParams}`;
-
+    
     try {
         const response = await fetch(apiURL);
         if (!response.ok) {
@@ -181,16 +181,16 @@ async function searchMovies(keyWord, page = 1) {
         const data = await response.json();
         totalPages = data.total_pages; // Ustawienie liczby stron
         gallery.innerHTML = '';
-
+        
         if (data.results.length > 0) {
             for (const movie of data.results) {
                 const movieEl = document.createElement('div');
                 movieEl.className = 'movie';
-
+                
                 // Pobieranie obrazów dla danego filmu
                 const imageResponse = await fetch(`https://api.themoviedb.org/3/movie/${movie.id}/images?api_key=${apikey}`);
                 const imageData = await imageResponse.json();
-
+                
                 // Sprawdzanie, czy są dostępne postery
                 if (imageData.posters.length > 0) {
                     const imgEl = document.createElement('img');
@@ -202,13 +202,13 @@ async function searchMovies(keyWord, page = 1) {
                 const titleEl = document.createElement('p');
                 titleEl.textContent = movie.title;
                 titleEl.className = 'movie-title';
-
+                
                 const genresEl = document.createElement('p');
                 const genres = movie.genre_ids.map(id => genresMap[id]).filter(name => name).join(', ');
                 const year = movie.release_date.split('-')[0];
                 genresEl.textContent = `${genres} | ${year}`;
                 genresEl.className = 'movie-genres-year';
-
+                
                 gallery.appendChild(movieEl);
                 movieEl.appendChild(titleEl);
                 movieEl.appendChild(genresEl);
@@ -224,7 +224,7 @@ async function searchMovies(keyWord, page = 1) {
 // Gatunki filmów
 async function fetchGenre() {
     const urlGenre = `https://api.themoviedb.org/3/genre/movie/list?api_key=${apikey}`;
-
+    
     try {
         const response = await fetch(urlGenre);
         if (!response.ok) {

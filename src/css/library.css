@@ -2,6 +2,31 @@ body {
     background-color: rgba(17, 17, 17, 1);
 }
 
+.desc {
+   color: white;
+   width: 464px;
+   padding-left: 117px;
+   margin-top: 229px;
+   gap: 16px;
+}
+
+.dream-cinema {
+   font-size: 64px;
+   font-weight: 700;
+   display: flex;
+   line-height: 75px;
+}
+
+.text {
+   font-size: 16px;
+   font-weight: 400;
+   color: rgba(248, 248, 248, 1);
+   display: flex;
+   line-height: 18.75px;
+   justify-content: center;
+   align-items: center;
+}
+
 .message {
     color: white;
     font-size: 32px;
@@ -15,6 +40,25 @@ body {
     flex-wrap: wrap;
     align-items: center;
 }
+
+.myLibrary {
+   position: relative;
+}
+
+#genreSelect {
+   margin-bottom: 10px;
+   padding: 5px;
+   margin-top: 800px;
+}
+
+#loadMoreBtn {
+   padding: 10px 15px;
+   background-color: #007bff;
+   color: white;
+   border: none;
+   cursor: pointer;
+}
+
 
 /*css do hero w catalog.html*/
 .menu {
@@ -162,10 +206,6 @@ body {
     }
  }
 
- /*header*/
- .myLibrary{
-    position: relative;
- }
 
  .background {
     width: 100%;
@@ -173,6 +213,9 @@ body {
     background: linear-gradient(79.39deg, #111111 32.37%, rgba(17, 17, 17, 0) 72.02%),
     url(../images/Library-desktop.png) no-repeat center center;
     background-size: cover;
-    background-position: right;
     display: flex;
+    z-index: -1;
+    position: absolute;
+    top: 0;
+    left: 0;
 }
