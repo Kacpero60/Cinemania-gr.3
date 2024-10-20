@@ -6,6 +6,7 @@ const perPage = 20;
 let keyWord = '';
 let selectedCountry = '';
 let selectedYear = '';
+let genresMap = {};
 
 //funkcja, co daje kraje do wyboru
 async function selector() {
@@ -162,9 +163,16 @@ async function popularMovies(page = 1, selectedCountry = '', selectedYear = '') 
                 titleEl.textContent = movie.title
                 titleEl.className = 'movie-title';
 
+                const genresEl = document.createElement('p');
+                const genres = movie.genre_ids.map(id => genresMap[id]).filter(name => name).join(', ');
+                const year = movie.release_date.split('-')[0];
+                genresEl.textContent = `${genres} | ${year}`;
+                genresEl.className = 'movie-genres-year';
+
                 movieEl.appendChild(imgEl);
                 gallery.appendChild(movieEl);
                 movieEl.appendChild(titleEl);
+                movieEl.appendChild(genresEl);
             }
         } else {
                 gallery.textContent =  'OOPS...We are very sorry! You dont have any results matching your search.';
@@ -215,20 +223,52 @@ if (data.results.length > 0) {
         titleEl.textContent = movie.title
         titleEl.className = 'movie-title';
 
+        const genresEl = document.createElement('p');
+        const genres = movie.genre_ids.map(id => genresMap[id]).filter(name => name).join(', ');
+        const year = movie.release_date.split('-')[0];
+        genresEl.textContent = `${genres} | ${year}`;
+        genresEl.className = 'movie-genres-year';
+
         gallery.appendChild(movieEl);
         movieEl.appendChild(titleEl);
+        movieEl.appendChild(genresEl);
     }
+
 } else {
-        gallery.textContent =  'OOPS...We are very sorry! You dont have any results matching your search.';
+    const message = document.createElement('p'); 
+    message.classList.add('message'); 
+    gallery.textContent =  'OOPS...We are very sorry! You dont have any results matching your search.';
+    gallery.appendChild(message);
 }
 
-totalPages = data.total_pages;
-renderBtn();
+        totalPages = data.total_pages;
+        pagination.innerHTML = '';
 } catch (error) {
         console.error('error fetching movies:', error);
 }
 }
+//gatunki filmów
+async function fetchGenre() {
+const urlGenre = `https://api.themoviedb.org/3/genre/movie/list?api_key=${apikey}`
 
+    try {
+        const response = await fetch(urlGenre);
+        if (!response.ok) {
+            throw new Error('response was not ok')
+        }
+        const data = await response.json();
+
+        genresMap = {};
+        data.genres.forEach(genre => {
+            genresMap[genre.id] = genre.name;
+        });
+    } catch (error) {
+        console.error('error:', error);
+    }
+}
+
+
+fetchGenre();
 
 //wyszukiwanie przycisku
 document.getElementById('searchButton').addEventListener('click', function(event) {
@@ -255,3 +295,23 @@ document.addEventListener("DOMContentLoaded", () => {
     selector();
     popularMovies(currentPage);
 });
+
+document.addEventListener('DOMContentLoaded', function () {
+    const searchInput = document.getElementById('searchInput');
+    const clearButton = document.getElementById('clearButton');
+
+    searchInput.addEventListener('input', function () {
+        if (searchInput.value.length > 0) {
+            clearButton.style.display = 'block';
+        } else {
+            clearButton.style.display = 'none';
+        }
+    });
+
+    clearButton.addEventListener('click', function () {
+        searchInput.value = '';
+        clearButton.style.display = 'none';
+        searchInput.focus();
+    });
+});
+
