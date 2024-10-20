@@ -1,3 +1,4 @@
+document.addEventListener("DOMContentLoaded", () => {
 
 // PODŚWIETLENIE AKTUALNEJ STRONY
 const container = document.querySelector(".nav-list");
@@ -18,15 +19,36 @@ for (let i = 0; i < links.length; i++) {
   const buttonMenu = document.querySelector(".button-menu");
   const navMobile = document.querySelector(".backdrop");
   
-
-    buttonMenu.addEventListener("click", () => {
+  if (buttonMenu && navMobile) {
+      buttonMenu.addEventListener("click", () => {
         navMobile.classList.toggle("hidden");
-    });
-
-// ZAMYKANIE MENU MOBILNEGO
-    window.addEventListener("resize", () => {
+    })
+  };
+  
+  // ZAMYKANIE MENU MOBILNEGO
+  window.addEventListener("resize", () => {
     if (window.innerWidth > 767) { 
-        navMobile.classList.remove("hidden");
+      navMobile.classList.remove("hidden");
     }
-});
+  });
+  
+  navMobile.addEventListener('click', () => {
+     navMobile.classList.remove("hidden");
+  });
+  
+  // BUTTON
+  const toggleSwitch = document.querySelector(".toggle-button");
 
+  toggleSwitch.addEventListener('click', () => {
+    const currentTheme = localStorage.getItem("theme");
+    const typeTheme = currentTheme === 'dark' ? 'light' : 'dark';
+    const themes = document.querySelectorAll(".theme");
+
+    document.body.setAttribute('data-theme', typeTheme);
+    localStorage.setItem('theme', typeTheme);
+
+    themes.forEach((theme) => {
+    theme.classList.toggle("dark");
+  });
+  });
+}); 
