@@ -4,24 +4,24 @@
   display: flex;
   align-items: center;
   justify-content: center;
+}
 
-  @media (max-width: 767px) {
-    flex-direction: column;
+@media (max-width: 767px) {
+  flex-direction: column;
+}
 
-    .footer-2 {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      justify-content: center;
-    }
+.footer-2 {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+}
 
-    .footer-2 {
-      margin-top: 10px;
-    }
-    .footer-txt {
-      margin-right: 5px;
-    }
-  }
+.footer-2 {
+  margin-top: 10px;
+}
+.footer-txt {
+  margin-right: 5px;
 }
 
 .footer-rights {
@@ -50,17 +50,17 @@
 .footer-link {
   color: #b7b7b7;
 
-  &--active:hover {
+  active:hover {
     color: orange;
   }
 
-  &--animation {
+  animation {
     text-decoration: none;
     position: relative;
     padding-bottom: 1px;
   }
 
-  &--animation::before {
+  nimation::before {
     content: '';
     position: absolute;
     bottom: 0;
@@ -105,7 +105,7 @@
       transition: stroke 0.55s ease var(--stroke-delay, 0s),
         stroke-dasharray 0.75s;
     }
-    &:hover {
+    :hover {
       --spacing: 4px;
       --stroke: ;
       --stroke-delay: 0.1s;
