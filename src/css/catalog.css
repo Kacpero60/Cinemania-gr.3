@@ -89,6 +89,8 @@ body {
   border-radius: 8px;
   border: 1px solid white;
   color: white;
+  cursor: pointer;
+  padding-left: 24px;
 }
 
 .search-btn {
@@ -98,6 +100,7 @@ body {
   background: linear-gradient(141.22deg, #ffc226 9.4%, #f84119 91.91%);
   color: white;
   border: none;
+  cursor: pointer;
 }
 
 .form {
@@ -144,6 +147,7 @@ body {
   border: 1px solid rgba(183, 183, 183, 1);
   background-color: transparent;
   color: white;
+  cursor: pointer;
 }
 
 .pagination-btn.active {
@@ -156,6 +160,7 @@ body {
   color: white;
   background-color: transparent;
   border: none;
+  cursor: pointer;
   /*width: 28px;
     height: 28px;*/
 }

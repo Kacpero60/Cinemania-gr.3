@@ -49,10 +49,11 @@ async function renderBtn() {
     paginationBtn.innerHTML = '';
 
     // przycisk do cofania
-    if (currentPage > 1) {
+    if (currentPage >= 1) {
         const prevBtn = document.createElement('button');
         prevBtn.textContent = '<';
         prevBtn.classList.add('prevnext-btn');
+
         prevBtn.addEventListener('click', () => {
             currentPage--;
             keyWord ? searchMovies(keyWord, currentPage) : popularMovies(currentPage);
@@ -88,10 +89,10 @@ async function renderBtn() {
 
         // wyświetlenie ostatniej strony
         const lastBtn = document.createElement('button');
-        lastBtn.textContent = totalPages;
+        lastBtn.textContent = 24;
         lastBtn.classList.add('pagination-btn');
         lastBtn.addEventListener('click', () => {
-            currentPage = totalPages;
+            currentPage = 24;
             keyWord ? searchMovies(keyWord, currentPage) : popularMovies(currentPage);
             renderBtn();
         });
@@ -211,6 +212,7 @@ async function searchMovies(keyWord, page = 1) {
                 movieEl.appendChild(imgEl);
                 movieEl.appendChild(titleEl);
                 gallery.appendChild(movieEl);
+                movieEl.appendChild(genresEl);
             });
         } else {
             gallery.textContent = 'OOPS... Brak wyników pasujących do wyszukiwania.';
@@ -242,6 +244,8 @@ async function fetchGenre() {
     }
 }
 
+fetchGenre();
+
 // Inicjalizacja przycisku wyszukiwania
 document.getElementById('searchButton').addEventListener('click', function(event) {
     event.preventDefault();
@@ -250,6 +254,37 @@ document.getElementById('searchButton').addEventListener('click', function(event
     keyWord = document.getElementById('searchInput').value;
     currentPage = 1; // Resetowanie strony
     updateMovies();
+});
+
+document.addEventListener('DOMContentLoaded', function () {
+    const searchInput = document.getElementById('searchInput');
+    const clearButton = document.getElementById('clearButton');
+
+    // Wyświetl przycisk czyszczenia, jeśli pole wyszukiwania ma wartość
+    searchInput.addEventListener('input', function () {
+        if (searchInput.value.length > 0) {
+            clearButton.style.display = 'block'; // Wyświetla przycisk
+        } else {
+            clearButton.style.display = 'none'; // Ukrywa przycisk
+        }
+    });
+
+    // Funkcja do czyszczenia pola wyszukiwania
+    clearButton.addEventListener('click', function () {
+        searchInput.value = ''; // Czyści pole
+        clearButton.style.display = 'none'; // Ukrywa przycisk
+        searchInput.focus(); // Ustawia fokus na pole wyszukiwania
+    });
+
+    // Inicjalizacja przycisku wyszukiwania
+    document.getElementById('searchButton').addEventListener('click', function(event) {
+        event.preventDefault();
+        const keyWord = searchInput.value; // Wartość inputu
+        // Wywołaj funkcję do wyszukiwania filmów, jeśli jest to potrzebne
+        if (keyWord) {
+            searchMovies(keyWord); // Wywołanie funkcji wyszukiwania filmów
+        }
+    });
 });
 
 // Inicjalizacja

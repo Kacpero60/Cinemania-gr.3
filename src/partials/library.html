@@ -6,11 +6,11 @@
     <title>My-Library</title>
     <link rel="stylesheet" href="../css/styles.css">
     <link rel="stylesheet" href="../css/library.css">
-    <script type="module" src="../js/mylibrary.js"></script>
-    <script type="module" src="../js/header.js"></script>
+    <script type="module" src="../js/mylibrary.js" defer></script>
+    <script type="module" src="../js/header.js" defer></script>
 </head>
 <body>
-    <!--header!-->
+    <!-- Header -->
     <header class="header">
         <div class="menu">
             <nav class="nav">
@@ -28,32 +28,31 @@
             </nav>
         </div>
     </header>
+
     <div class="myLibrary">
         <div class="background">
-          <p class="desc">
-            <span class="dream-cinema">Create Your Dream Cinema</span>
-            <span class="text">
-               Is a guide to designing a personalized movie theater experience with the right equipment,
-               customized decor, and favorite films.
-               This guide helps you bring the cinema experience into your own home with cozy seating,
-                dim lighting, and movie theater snacks.
-              </span>
-          </p>
+            <p class="desc">
+                <span class="dream-cinema">Create Your Dream Cinema</span>
+                <span class="text">
+                    Is a guide to designing a personalized movie theater experience with the right equipment,
+                    customized decor, and favorite films. This guide helps you bring the cinema experience into your own home
+                    with cozy seating, dim lighting, and movie theater snacks.
+                </span>
+            </p>
         </div>
 
         <label for="genreSelect"></label>
-        <select id="genreSelect"></select>
+        <select id="genreSelect">
+            <option value="">Genre</option>
+        </select>
 
-        
         <div class="gallery-library"></div>
-        
-        <p class="message">
-            OOPS... 
-            We are very sorry! 
-            You don’t have any movies in your library.
+
+        <p class="message" style="display: none;">
+            OOPS... We are very sorry! You don’t have any movies in your library.
         </p>
-        
+
         <button id="loadMoreBtn" style="display: none;">Load More</button>
-    </div>
+    </div>    
 </body>
 </html>
