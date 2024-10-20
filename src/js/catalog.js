@@ -8,8 +8,9 @@ const perPage = 20;
 let keyWord = '';
 let selectedCountry = '';
 let selectedYear = '';
+let genresMap = {};
 
-// funkcja do wyboru krajów
+// Funkcja do wyboru krajów
 async function selector() {
     const countrySelect = document.getElementById('countrySelect');
 
@@ -29,7 +30,7 @@ async function selector() {
     }
 }
 
-// funkcja do wyboru lat
+// Funkcja do wyboru lat
 async function populateYears() {
     const yearSelect = document.getElementById('yearSelect');
     const currentYear = new Date().getFullYear();
@@ -42,17 +43,16 @@ async function populateYears() {
     }
 }
 
-// renderowanie przycisków paginacji
+// Renderowanie przycisków paginacji
 async function renderBtn() {
     const paginationBtn = document.getElementById('pagination');
     paginationBtn.innerHTML = '';
 
     // przycisk do cofania
-    if (currentPage >= 1) {
+    if (currentPage > 1) {
         const prevBtn = document.createElement('button');
         prevBtn.textContent = '<';
         prevBtn.classList.add('prevnext-btn');
-
         prevBtn.addEventListener('click', () => {
             currentPage--;
             keyWord ? searchMovies(keyWord, currentPage) : popularMovies(currentPage);
@@ -66,7 +66,7 @@ async function renderBtn() {
         const btn = document.createElement('button');
         btn.textContent = i;
         btn.classList.add('pagination-btn');
-
+        
         if (i === currentPage) {
             btn.classList.add('active');
         }
@@ -83,16 +83,15 @@ async function renderBtn() {
     if (totalPages > 3) {
         const dots = document.createElement('div');
         dots.textContent = '...';
-        paginationBtn.appendChild(dots);
         dots.classList.add('dots');
+        paginationBtn.appendChild(dots);
 
         // wyświetlenie ostatniej strony
         const lastBtn = document.createElement('button');
-        lastBtn.textContent = 24;
+        lastBtn.textContent = totalPages;
         lastBtn.classList.add('pagination-btn');
-
         lastBtn.addEventListener('click', () => {
-            currentPage = 24;
+            currentPage = totalPages;
             keyWord ? searchMovies(keyWord, currentPage) : popularMovies(currentPage);
             renderBtn();
         });
@@ -104,7 +103,6 @@ async function renderBtn() {
         const nextBtn = document.createElement('button');
         nextBtn.textContent = '>';
         nextBtn.classList.add('prevnext-btn');
-
         nextBtn.addEventListener('click', () => {
             currentPage++;
             keyWord ? searchMovies(keyWord, currentPage) : popularMovies(currentPage);
@@ -141,8 +139,15 @@ async function popularMovies(page = 1) {
                 titleEl.textContent = movie.title;
                 titleEl.className = 'movie-title';
 
+                const genresEl = document.createElement('p');
+                const genres = movie.genre_ids.map(id => genresMap[id]).filter(name => name).join(', ');
+                const year = movie.release_date.split('-')[0];
+                genresEl.textContent = `${genres} | ${year}`;
+                genresEl.className = 'movie-genres-year';
+
                 movieEl.appendChild(imgEl);
                 movieEl.appendChild(titleEl);
+                movieEl.appendChild(genresEl);
                 gallery.appendChild(movieEl);
 
                 movieEl.addEventListener("click", () => {
@@ -159,7 +164,7 @@ async function popularMovies(page = 1) {
     }
 }
 
-// wyszukiwanie filmów po wpisaniu frazy
+// wyszukiwanie filmów
 async function searchMovies(keyWord, page = 1) {
     const yearParams = selectedYear ? `&primary_release_year=${selectedYear}` : '';
     const regionParams = selectedCountry ? `&region=${selectedCountry}` : '';
@@ -175,7 +180,7 @@ async function searchMovies(keyWord, page = 1) {
         gallery.innerHTML = '';
 
         if (data.results.length > 0) {
-            for (const movie of data.results) {
+            data.results.forEach(movie => {
                 const movieEl = document.createElement('div');
                 movieEl.className = 'movie';
 
@@ -189,7 +194,7 @@ async function searchMovies(keyWord, page = 1) {
                 movieEl.appendChild(imgEl);
                 movieEl.appendChild(titleEl);
                 gallery.appendChild(movieEl);
-            }
+            });
         } else {
             gallery.textContent = 'OOPS... Brak wyników pasujących do wyszukiwania.';
         }
@@ -200,25 +205,12 @@ async function searchMovies(keyWord, page = 1) {
     }
 }
 
-// wyszukiwanie po kliknięciu przycisku
-document.getElementById('searchButton').addEventListener('click', function(event) {
-    event.preventDefault();
+// Inicjalizacja
+async function init() {
+    await fetchGenre();
+    await selector();
+    await populateYears();
+    popularMovies(currentPage); // Domyślnie załaduj popularne filmy
+}
 
-    keyWord = document.getElementById('searchInput').value;
-    selectedYear = document.getElementById('yearSelect').value;
-    selectedCountry = document.getElementById('countrySelect').value;
-
-    if (keyWord === "") {
-        return;
-    }
-
-    currentPage = 1;
-    searchMovies(keyWord);
-});
-
-// ładowanie popularnych filmów po załadowaniu strony
-document.addEventListener("DOMContentLoaded", () => {
-    populateYears();
-    selector();
-    popularMovies(currentPage);
-});
+init();

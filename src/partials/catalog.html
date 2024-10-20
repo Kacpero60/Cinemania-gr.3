@@ -48,6 +48,11 @@
     <!--formularz do wyszukiwania filmów!-->
     <form class="form" id="form">
         <input type="text" id="searchInput" class="search" placeholder="Search" />
+        <div class="search-close" id="clearButton" style="display: none;">
+            <svg class="close">
+                <use xlink:href="../images/icons.svg#icon-close-icon"></use>
+            </svg>
+        </div>
     </form>
     
     <div class="select">
@@ -58,8 +63,12 @@
         <select class="search" id="yearSelect">
             <option value="">Year</option>
         </select>
-        <button type="submit" id="searchButton" class="search-btn">search
-           <!-- <img src="search-icon.png" alt="Search" />-->
+        <button type="submit" id="searchButton" class="search-btn">
+            <div class="search-container"> 
+                <svg class="search-icon">
+                    <use xlink:href="../images/icons.svg#icon-loop"></use>
+                </svg>
+            </div>
         </button>
     </div>
 </div>
