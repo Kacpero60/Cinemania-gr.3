@@ -77,26 +77,11 @@ function addToLibrary(movie) {
     // Sprawdzamy, czy film już istnieje w bibliotece
     const movieExists = library.some(item => item.title === movie.title);
     if (!movieExists) {
-        library.push(movie); // Dodaj film do biblioteki
-        localStorage.setItem('myLibrary', JSON.stringify(library)); // Zapisz bibliotekę
-        displayMovies(); // Odśwież bibliotekę po dodaniu
+        library.push(movie); 
+        localStorage.setItem('myLibrary', JSON.stringify(library)); 
+        displayMovies(); 
         alert(`${movie.title} został dodany do Twojej biblioteki!`);
     } else {
         alert(`${movie.title} już znajduje się w Twojej bibliotece!`);
     }
 }
-
-// Przykładowa funkcja do dodawania filmów (tu możesz wywołać addToLibrary)
-function exampleAddMovie() {
-    // Przykładowe dane filmu - zmień te dane zgodnie z własnymi wymaganiami
-    const newMovie = {
-        title: "Nowy Film " + new Date().toLocaleString(), // Tutaj powinien być tytuł nowego filmu
-        posterPath: "/path/to/poster.jpg", // Upewnij się, że ta ścieżka jest poprawna
-        genre: "Action", // Możesz ustawić odpowiedni gatunek
-    };
-    
-    addToLibrary(newMovie);
-}
-
-// Wywołanie przykładowej funkcji do dodania filmu
-// exampleAddMovie(); // Upewnij się, że to jest wywołane w odpowiednim momencie
