@@ -17,19 +17,43 @@ for (let i = 0; i < links.length; i++) {
 // OTWIERANIE MENU MOBILNEGO
   const buttonMenu = document.querySelector(".button-menu");
   const navMobile = document.querySelector(".backdrop");
-  
+
 
     // Sprawdzenie, czy navMobile istnieje
     if (navMobile) {
       buttonMenu.addEventListener("click", () => {
           navMobile.classList.toggle("hidden");
       });
-    } 
+    };
 
 // ZAMYKANIE MENU MOBILNEGO
     window.addEventListener("resize", () => {
-    if (window.innerWidth > 767) { 
-        navMobile.classList.remove("hidden");
-    }
-});
 
+    if (window.innerWidth > 767) { 
+      navMobile.classList.remove("hidden");
+    }
+  });
+  
+  if (navMobile) {
+    navMobile.addEventListener('click', () => {
+      navMobile.classList.remove("hidden");
+    });
+  };
+  
+  // BUTTON
+  const toggleSwitch = document.querySelector(".toggle-button");
+  if (toggleSwitch) {
+    
+    toggleSwitch.addEventListener('click', () => {
+      const currentTheme = localStorage.getItem("theme");
+      const typeTheme = currentTheme === 'dark' ? 'light' : 'dark';
+      const themes = document.querySelectorAll(".theme");
+      
+      document.body.setAttribute('data-theme', typeTheme);
+      localStorage.setItem('theme', typeTheme);
+      
+      themes.forEach((theme) => {
+        theme.classList.toggle("dark");
+      });
+    });
+};
