@@ -32,8 +32,6 @@ export async function openPopUp(movie, apikey) {
     // Show the pop-up
     popUpContainer.style.display = 'flex';
 
-    console.log(movie.title);
-
     // Close pop-up event
     document.getElementById('closePopUp').onclick = function() {
         popUpContainer.style.display = 'none';
