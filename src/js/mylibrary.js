@@ -68,3 +68,55 @@
         await fetchGenres(); 
         displayMovies(); 
     });
+    // Funkcja do wyświetlania filmów w zakładce 'My Library'
+function displayLibrary() {
+    const library = JSON.parse(localStorage.getItem('library')) || [];
+    const gallery = document.querySelector('.gallery-library');
+    const message = document.querySelector('.message');
+
+    if (library.length === 0) {
+        message.style.display = 'block';
+        gallery.innerHTML = '';  // Wyczyść galerię
+    } else {
+        message.style.display = 'none';
+        gallery.innerHTML = '';  // Wyczyść galerię na wypadek ponownego załadowania
+        library.forEach(movie => {
+            const movieElement = document.createElement('div');
+            movieElement.classList.add('movie-item');
+            movieElement.innerHTML = `
+                <h3>${movie.title}</h3>
+                <p>Genre: ${movie.genre}</p>
+                <button class="show-details-btn">Show Details</button>
+            `;
+            gallery.appendChild(movieElement);
+
+            // Dodaj pop-up do każdego filmu
+            movieElement.querySelector('.show-details-btn').addEventListener('click', () => {
+                openPopUp(movie);
+            });
+        });
+    }
+}
+
+// Funkcja otwierająca pop-up
+function openPopUp(movie) {
+    const popUp = document.createElement('div');
+    popUp.classList.add('popup');
+    popUp.innerHTML = `
+        <div class="popup-content">
+            <h2>${movie.title}</h2>
+            <p><strong>Genre:</strong> ${movie.genre}</p>
+            <p><strong>Description:</strong> ${movie.description || 'No description available'}</p>
+            <button class="close-popup-btn">Close</button>
+        </div>
+    `;
+
+    document.body.appendChild(popUp);
+
+    // Funkcja zamykająca pop-up
+    popUp.querySelector('.close-popup-btn').addEventListener('click', () => {
+        popUp.remove();
+    });
+}
+
+document.addEventListener('DOMContentLoaded', displayLibrary);

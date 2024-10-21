@@ -295,4 +295,23 @@ async function init() {
     popularMovies(currentPage); // Domyślnie załaduj popularne filmy
 }
 
+// Funkcja dodająca film do localStorage
+function addToLibrary(movie) {
+    let library = JSON.parse(localStorage.getItem('library')) || [];
+    library.push(movie);
+    localStorage.setItem('library', JSON.stringify(library));
+}
+
+// Obsługa kliknięcia przycisku 'Add to my'
+document.querySelectorAll('.add-to-my-btn').forEach(button => {
+    button.addEventListener('click', function() {
+        const movie = {
+            title: this.parentElement.querySelector('.movie-title').innerText,
+            genre: this.parentElement.querySelector('.movie-genre').innerText,
+        };
+        addToLibrary(movie);
+        alert(`${movie.title} został dodany do Twojej biblioteki!`);
+    });
+});
+
 init();
