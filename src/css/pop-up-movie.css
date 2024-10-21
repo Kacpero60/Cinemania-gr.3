@@ -91,6 +91,7 @@
 
 .pop-up-description-data .gendre-span {
   margin-left: 108px;
+  display: inline-table;
 }
 
 .about {
