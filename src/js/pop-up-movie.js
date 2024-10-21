@@ -19,14 +19,18 @@ export async function openPopUp(movie, apikey) {
     const genreMap = await fetchGenres(apikey);
     const genreNames = movie.genre_ids.map(id => genreMap[id]).filter(name => name); // Map IDs to names
 
+    // Sprawdzenie, czy film jest już w bibliotece
+    const library = JSON.parse(localStorage.getItem('library')) || [];
+    const isInLibrary = library.some(item => item.id === movie.id);
+
     popUpDescription.innerHTML = `
         <h2>${movie.title}</h2>
-        <p class="pop-up-description-data vote" >Vote / Votes: <span> ${movie.vote_average} / ${movie.vote_count}</span></p>
+        <p class="pop-up-description-data vote">Vote / Votes: <span>${movie.vote_average} / ${movie.vote_count}</span></p>
         <p class="pop-up-description-data popularity">Popularity: <span>${movie.popularity}</span></p>
         <p class="pop-up-description-data gendre">Genre: <span>${genreNames.length > 0 ? genreNames.join(', ') : ''}</span></p>
-        <p class="pop-up-description-data about"> ABOUT:</p>
-        <p class="pop-up-description-data about-desc"> ${movie.overview}</p>
-        <button class="buttonAddToMyLibrary" id="buttonAddToMyLibrary">Add to my</button>
+        <p class="pop-up-description-data about">ABOUT:</p>
+        <p class="pop-up-description-data about-desc">${movie.overview}</p>
+        <button class="buttonAddToMyLibrary" id="buttonAddToMyLibrary">${isInLibrary ? 'Remove from my library' : 'Add to my library'}</button>
     `;
 
     // Show the pop-up
@@ -35,6 +39,16 @@ export async function openPopUp(movie, apikey) {
     // Close pop-up event
     document.getElementById('closePopUp').onclick = function() {
         popUpContainer.style.display = 'none';
+    };
+
+    // Obsługa kliknięcia przycisku 'Add to my library'
+    const addToLibraryButton = document.getElementById('buttonAddToMyLibrary');
+    addToLibraryButton.onclick = function() {
+        addToLibrary(movie);
+        // Zaktualizuj tekst przycisku
+        const updatedLibrary = JSON.parse(localStorage.getItem('library')) || [];
+        const isNowInLibrary = updatedLibrary.some(item => item.id === movie.id);
+        this.textContent = isNowInLibrary ? 'Remove from my library' : 'Add to my library';
     };
 }
 
@@ -55,4 +69,24 @@ export async function fetchGenres(apikey) {
         console.error('Błąd podczas pobierania gatunków:', error);
         return {};
     }
+}
+
+// Funkcja dodająca film do localStorage
+function addToLibrary(movie) {
+    let library = JSON.parse(localStorage.getItem('library')) || [];
+    
+    // Sprawdzenie, czy film już istnieje w bibliotece
+    const existingMovieIndex = library.findIndex(item => item.id === movie.id);
+    
+    if (existingMovieIndex === -1) {
+        // Film nie istnieje, dodaj go
+        library.push(movie);
+        alert(`${movie.title} został dodany do Twojej biblioteki!`);
+    } else {
+        // Film już istnieje, usuń go
+        library.splice(existingMovieIndex, 1);
+        alert(`${movie.title} został usunięty z Twojej biblioteki!`);
+    }
+    
+    localStorage.setItem('library', JSON.stringify(library));
 }
