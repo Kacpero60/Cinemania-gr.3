@@ -91,6 +91,11 @@ async function renderBtn() {
         const lastBtn = document.createElement('button');
         lastBtn.textContent = 24;
         lastBtn.classList.add('pagination-btn');
+
+        if (currentPage === 24) {
+            lastBtn.classList.add('active'); // Dodaj klasę aktywną
+        }
+
         lastBtn.addEventListener('click', () => {
             currentPage = 24;
             keyWord ? searchMovies(keyWord, currentPage) : popularMovies(currentPage);
@@ -297,9 +302,9 @@ async function init() {
 
 // Funkcja dodająca film do localStorage
 function addToLibrary(movie) {
-    let library = JSON.parse(localStorage.getItem('library')) || [];
+    let library = JSON.parse(localStorage.getItem('myLibrary')) || [];
     library.push(movie);
-    localStorage.setItem('library', JSON.stringify(library));
+    localStorage.setItem('myLibrary', JSON.stringify(library));
 }
 
 // Obsługa kliknięcia przycisku 'Add to my'
@@ -308,6 +313,7 @@ document.querySelectorAll('.add-to-my-btn').forEach(button => {
         const movie = {
             title: this.parentElement.querySelector('.movie-title').innerText,
             genre: this.parentElement.querySelector('.movie-genre').innerText,
+            posterPath: this.parentElement.querySelector('img').src,
         };
         addToLibrary(movie);
         alert(`${movie.title} został dodany do Twojej biblioteki!`);

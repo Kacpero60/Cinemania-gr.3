@@ -1,122 +1,102 @@
-       // Funkcja do pobierania gatunków filmów z TMDB
-       async function fetchGenres() {
-        const apiKey = '26ee83a5e26d7fcb87f8d8380af6bd82' ; // Podaj swój klucz API
-        const url = `https://api.themoviedb.org/3/genre/movie/list?api_key=${apiKey}&language=en-US`;
-        
-        try {
-            const response = await fetch(url);
-            if (!response.ok) {
-                throw new Error('Error fetching genres from TMDB');
-            }
-            const data = await response.json();
+// Funkcja do pobierania gatunków filmów z TMDB
+async function fetchGenres() {
+    const apiKey = '26ee83a5e26d7fcb87f8d8380af6bd82';
+    const url = `https://api.themoviedb.org/3/genre/movie/list?api_key=${apiKey}&language=en-US`;
 
-            const genreSelect = document.getElementById('genreSelect');
-
-            // Dodanie opcji do selecta
-            data.genres.forEach(genre => {
-                const option = document.createElement('option');
-                option.value = genre.id; 
-                option.textContent = genre.name; 
-                genreSelect.appendChild(option);
-            });
-        } catch (error) {
-            console.error('Error:', error);
+    try {
+        const response = await fetch(url);
+        if (!response.ok) {
+            throw new Error('Error fetching genres from TMDB');
         }
-    }
+        const data = await response.json();
+        const genreSelect = document.getElementById('genreSelect');
 
-    // Funkcja do wyświetlania filmów z localStorage
-    function displayMovies() {
-        const galleryLibrary = document.querySelector('.gallery-library');
-        const message = document.querySelector('.message');
-        const loadMoreBtn = document.getElementById('loadMoreBtn');
-
-        // Pobieranie filmów z localStorage
-        const movies = JSON.parse(localStorage.getItem('myLibrary')) || [];
-
-        // Sprawdzenie, czy są filmy w bibliotece
-        if (movies.length === 0) {
-            message.style.display = 'block'; 
-            loadMoreBtn.style.display = 'none'; 
-            galleryLibrary.innerHTML = ''; 
-            return;
-        } else {
-            message.style.display = 'none'; 
-            loadMoreBtn.style.display = 'block'; 
-        }
-
-        // Wyświetlanie filmów
-        galleryLibrary.innerHTML = ''; 
-        movies.forEach(movie => {
-            const movieEl = document.createElement('div');
-            movieEl.className = 'movie-item'; 
-
-            const imgEl = document.createElement('img');
-            imgEl.src = movie.posterPath; 
-            imgEl.alt = movie.title; 
-
-            const titleEl = document.createElement('p');
-            titleEl.textContent = movie.title; 
-
-            movieEl.appendChild(imgEl);
-            movieEl.appendChild(titleEl);
-            galleryLibrary.appendChild(movieEl);
+        data.genres.forEach(genre => {
+            const option = document.createElement('option');
+            option.value = genre.id;
+            option.textContent = genre.name;
+            genreSelect.appendChild(option);
         });
+    } catch (error) {
+        console.error('Error:', error);
     }
+}
 
-    // Wywołanie funkcji podczas ładowania strony
-    document.addEventListener('DOMContentLoaded', async () => {
-        await fetchGenres(); 
-        displayMovies(); 
-    });
-    // Funkcja do wyświetlania filmów w zakładce 'My Library'
-function displayLibrary() {
-    const library = JSON.parse(localStorage.getItem('library')) || [];
-    const gallery = document.querySelector('.gallery-library');
+// Funkcja do wyświetlania filmów w bibliotece
+function displayMovies() {
+    const galleryLibrary = document.querySelector('.gallery-library');
     const message = document.querySelector('.message');
 
-    if (library.length === 0) {
+    const movies = JSON.parse(localStorage.getItem('myLibrary')) || [];
+    if (movies.length === 0) {
         message.style.display = 'block';
-        gallery.innerHTML = '';  // Wyczyść galerię
+        galleryLibrary.innerHTML = '';
+        return;
     } else {
         message.style.display = 'none';
-        gallery.innerHTML = '';  // Wyczyść galerię na wypadek ponownego załadowania
-        library.forEach(movie => {
-            const movieElement = document.createElement('div');
-            movieElement.classList.add('movie-item');
-            movieElement.innerHTML = `
-                <h3>${movie.title}</h3>
-                <p>Genre: ${movie.genre}</p>
-                <button class="show-details-btn">Show Details</button>
-            `;
-            gallery.appendChild(movieElement);
-
-            // Dodaj pop-up do każdego filmu
-            movieElement.querySelector('.show-details-btn').addEventListener('click', () => {
-                openPopUp(movie);
-            });
-        });
     }
-}
 
-// Funkcja otwierająca pop-up
-function openPopUp(movie) {
-    const popUp = document.createElement('div');
-    popUp.classList.add('popup');
-    popUp.innerHTML = `
-        <div class="popup-content">
-            <h2>${movie.title}</h2>
-            <p><strong>Genre:</strong> ${movie.genre}</p>
-            <p><strong>Description:</strong> ${movie.description || 'No description available'}</p>
-            <button class="close-popup-btn">Close</button>
-        </div>
-    `;
+    galleryLibrary.innerHTML = '';
+    movies.forEach(movie => {
+        const movieEl = document.createElement('div');
+        movieEl.className = 'movie-item';
 
-    document.body.appendChild(popUp);
+        const imgEl = document.createElement('img');
+        imgEl.src = `https://image.tmdb.org/t/p/w500${movie.posterPath}`; // Upewnij się, że jest poprawny URL
+        imgEl.alt = movie.title;
 
-    // Funkcja zamykająca pop-up
-    popUp.querySelector('.close-popup-btn').addEventListener('click', () => {
-        popUp.remove();
+        const titleEl = document.createElement('h3');
+        titleEl.textContent = movie.title;
+
+        // Możesz dodać inne informacje o filmie, jeśli chcesz
+        const genreEl = document.createElement('p');
+        genreEl.textContent = `Genre: ${movie.genre}`;
+
+        movieEl.appendChild(imgEl);
+        movieEl.appendChild(titleEl);
+        movieEl.appendChild(genreEl);
+        galleryLibrary.appendChild(movieEl);
     });
 }
 
-document.addEventListener('DOMContentLoaded', displayLibrary);
+// Wywołanie funkcji podczas ładowania strony
+document.addEventListener('DOMContentLoaded', async () => {
+    await fetchGenres();
+    displayMovies();
+});
+
+// Funkcja do wyświetlania biblioteki (można usunąć, ponieważ jest zintegrowana z displayMovies)
+function displayLibrary() {
+    // Funkcjonalność jest teraz zintegrowana w displayMovies, więc można usunąć tę funkcję
+}
+
+// Dodatkowa funkcja do dodawania filmów do biblioteki
+function addToLibrary(movie) {
+    let library = JSON.parse(localStorage.getItem('myLibrary')) || [];
+
+    // Sprawdzamy, czy film już istnieje w bibliotece
+    const movieExists = library.some(item => item.title === movie.title);
+    if (!movieExists) {
+        library.push(movie); // Dodaj film do biblioteki
+        localStorage.setItem('myLibrary', JSON.stringify(library)); // Zapisz bibliotekę
+        displayMovies(); // Odśwież bibliotekę po dodaniu
+        alert(`${movie.title} został dodany do Twojej biblioteki!`);
+    } else {
+        alert(`${movie.title} już znajduje się w Twojej bibliotece!`);
+    }
+}
+
+// Przykładowa funkcja do dodawania filmów (tu możesz wywołać addToLibrary)
+function exampleAddMovie() {
+    // Przykładowe dane filmu - zmień te dane zgodnie z własnymi wymaganiami
+    const newMovie = {
+        title: "Nowy Film " + new Date().toLocaleString(), // Tutaj powinien być tytuł nowego filmu
+        posterPath: "/path/to/poster.jpg", // Upewnij się, że ta ścieżka jest poprawna
+        genre: "Action", // Możesz ustawić odpowiedni gatunek
+    };
+    
+    addToLibrary(newMovie);
+}
+
+// Wywołanie przykładowej funkcji do dodania filmu
+// exampleAddMovie(); // Upewnij się, że to jest wywołane w odpowiednim momencie

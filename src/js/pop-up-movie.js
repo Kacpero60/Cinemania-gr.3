@@ -21,11 +21,11 @@ export async function openPopUp(movie, apikey) {
 
     popUpDescription.innerHTML = `
         <h2>${movie.title}</h2>
-        <p class="pop-up-description-data vote" >Vote / Votes: <span> ${movie.vote_average} / ${movie.vote_count}</span></p>
+        <p class="pop-up-description-data vote">Vote / Votes: <span>${movie.vote_average} / ${movie.vote_count}</span></p>
         <p class="pop-up-description-data popularity">Popularity: <span>${movie.popularity}</span></p>
-        <p class="pop-up-description-data gendre">Genre: <span>${genreNames.length > 0 ? genreNames.join(', ') : ''}</span></p>
-        <p class="pop-up-description-data about"> ABOUT:</p>
-        <p class="pop-up-description-data about-desc"> ${movie.overview}</p>
+        <p class="pop-up-description-data genre">Genre: <span>${genreNames.length > 0 ? genreNames.join(', ') : ''}</span></p>
+        <p class="pop-up-description-data about">ABOUT:</p>
+        <p class="pop-up-description-data about-desc">${movie.overview}</p>
         <button class="buttonAddToMyLibrary" id="buttonAddToMyLibrary">Add to my</button>
     `;
 
@@ -36,6 +36,34 @@ export async function openPopUp(movie, apikey) {
     document.getElementById('closePopUp').onclick = function() {
         popUpContainer.style.display = 'none';
     };
+
+    // Add event listener for "Add to my" button
+    document.getElementById('buttonAddToMyLibrary').onclick = function() {
+        const movieData = {
+            title: movie.title,
+            genre: genreNames.join(', '),
+            posterPath: movie.poster_path,
+            voteAverage: movie.vote_average,
+            voteCount: movie.vote_count,
+            popularity: movie.popularity,
+            overview: movie.overview,
+        };
+        addToLibrary(movieData); // Funkcja do dodawania filmu do biblioteki
+        alert(`${movie.title} został dodany do Twojej biblioteki!`);
+    };
+}
+
+// Funkcja do dodawania filmu do biblioteki
+function addToLibrary(movie) {
+    let library = JSON.parse(localStorage.getItem('myLibrary')) || [];
+    library.push(movie);
+    localStorage.setItem('myLibrary', JSON.stringify(library));
+    displayLibrary(); // Odśwież bibliotekę po dodaniu
+}
+
+// Funkcja do wyświetlania biblioteki
+function displayLibrary() {
+    // Implementacja wyświetlania filmów w bibliotece
 }
 
 // Funkcja do pobierania gatunków
