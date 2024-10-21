@@ -1,58 +1,74 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+  <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>My-Library</title>
-    <link rel="stylesheet" href="../css/styles.css">
-    <link rel="stylesheet" href="../css/library.css">
+    <link rel="stylesheet" href="../css/styles.css" />
+    <link rel="stylesheet" href="../css/library.css" />
     <script type="module" src="../js/mylibrary.js" defer></script>
     <script type="module" src="../js/header.js" defer></script>
-</head>
-<body>
+  </head>
+  <body>
     <!-- Header -->
     <header class="header">
-        <div class="menu">
-            <nav class="nav">
-                <div class="logo">
-                    <svg width="48" height="48">
-                        <use href="../images/icons.svg#icon-logo"></use>
-                    </svg>
-                    <a href="../index.html" class="link"><span class="cinemania">Cinemania</span></a>
-                </div>
-                <ul class="list nav-list">
-                    <li><a href="../index.html" class="navigation link">HOME</a></li>
-                    <li><a href="catalog.html" class="navigation link">CATALOG</a></li>
-                    <li><a href="library.html" class="navigation link navigation-activ">MY LIBRARY</a></li>
-                </ul>
-            </nav>
-        </div>
+      <div class="menu">
+        <nav class="nav">
+          <div class="logo">
+            <svg width="48" height="48">
+              <use href="../images/icons.svg#icon-logo"></use>
+            </svg>
+            <a href="../index.html" class="link"
+              ><span class="cinemania">Cinemania</span></a
+            >
+          </div>
+          <ul class="list nav-list">
+            <li><a href="../index.html" class="navigation link">HOME</a></li>
+            <li><a href="catalog.html" class="navigation link">CATALOG</a></li>
+            <li>
+              <a href="library.html" class="navigation link navigation-activ"
+                >MY LIBRARY</a
+              >
+            </li>
+          </ul>
+        </nav>
+      </div>
     </header>
 
     <div class="myLibrary">
-        <div class="background">
-            <p class="desc">
-                <span class="dream-cinema">Create Your Dream Cinema</span>
-                <span class="text">
-                    Is a guide to designing a personalized movie theater experience with the right equipment,
-                    customized decor, and favorite films. This guide helps you bring the cinema experience into your own home
-                    with cozy seating, dim lighting, and movie theater snacks.
-                </span>
-            </p>
-        </div>
-
-        <label for="genreSelect"></label>
-        <select id="genreSelect">
-            <option value="">Genre</option>
-        </select>
-
-        <div class="gallery-library"></div>
-
-        <p class="message" style="display: none;">
-            OOPS... We are very sorry! You don’t have any movies in your library.
+      <div class="background">
+        <p class="desc">
+          <span class="dream-cinema">Create Your Dream Cinema</span>
+          <span class="text">
+            Is a guide to designing a personalized movie theater experience with
+            the right equipment, customized decor, and favorite films. This
+            guide helps you bring the cinema experience into your own home with
+            cozy seating, dim lighting, and movie theater snacks.
+          </span>
         </p>
+      </div>
 
-        <button id="loadMoreBtn" style="display: none;">Load More</button>
-    </div>    
-</body>
+      <label for="genreSelect"></label>
+      <select id="genreSelect">
+        <option value="">Genre</option>
+      </select>
+
+      <div class="gallery-library"></div>
+
+      <div class="message" style="display: none">
+        <p>OOPS...</p>
+        <p>We are very sorry!</p>
+        <p>You don’t have any movies in your library.</p>
+      </div>
+      <div class="searchMovieToMyLibrary">
+        <button id="searchMovieToMyLibrary">
+          <a href="catalog.html" class="searchMovieToMyLibraryLink"
+            >Search movie</a
+          >
+        </button>
+
+        <button id="loadMoreBtn" style="display: none">Load More</button>
+      </div>
+    </div>
+  </body>
 </html>
