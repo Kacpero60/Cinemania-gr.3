@@ -12,10 +12,3 @@
   --grey-color: #b7b7b7;
   --orange-color: #f87719;
 }
-
-body {
-  max-width: 1280px;
-  display: block;
-  background-color: #000;
-  margin: auto;
-}
