@@ -11,6 +11,7 @@
   </head>
   <body>
     <!-- Header -->
+    <link rel="stylesheet" href="../css/header.css" />
     <header class="header">
       <div class="menu">
         <nav class="nav">
@@ -18,9 +19,9 @@
             <svg width="48" height="48">
               <use href="../images/icons.svg#icon-logo"></use>
             </svg>
-            <a href="../index.html" class="link"
-              ><span class="cinemania">Cinemania</span></a
-            >
+            <a href="../index.html" class="link">
+              <span class="cinemania">Cinemania</span>
+            </a>
           </div>
           <ul class="list nav-list">
             <li><a href="../index.html" class="navigation link">HOME</a></li>
@@ -31,7 +32,43 @@
               >
             </li>
           </ul>
+          <button class="navigation button-menu">MENU</button>
+          <button class="toggle-button">
+            <svg class="theme" width="14" height="14">
+              <use href="../images/icons.svg#icon-moon"></use>
+            </svg>
+            <svg class="theme" width="18" height="18">
+              <use href="../images/icons.svg#icon-eclipse"></use>
+            </svg>
+            <svg class="theme dark" width="18" height="18">
+              <use href="../images/icons.svg#icon-eclipse-2"></use>
+            </svg>
+            <svg class="theme dark" width="14" height="14">
+              <use href="../images/icons.svg#icon-sun"></use>
+            </svg>
+          </button>
         </nav>
+      </div>
+      <div class="backdrop">
+        <div class="nav-mobile hidden">
+          <ul class="list nav-list-mobile">
+            <li>
+              <a href="../index.html" class="navigation text-mobile link"
+                >HOME</a
+              >
+            </li>
+            <li>
+              <a href="catalog.html" class="navigation text-mobile link"
+                >CATALOG</a
+              >
+            </li>
+            <li>
+              <a href="library.html" class="navigation text-mobile link"
+                >MY LIBRARY</a
+              >
+            </li>
+          </ul>
+        </div>
       </div>
     </header>
 
