@@ -1,3 +1,5 @@
+import { openPopUp, apikey, fetchGenres } from './pop-up-movie.js'; // Importuj funkcje z pop-up.js
+
 const heroTitle = document.querySelector('.title');
 const heroDescription = document.querySelector('.text');
 const watchTrailerBtn = document.querySelector('.hero-btn.cta');
@@ -77,3 +79,7 @@ const setDefaultHero = () => {
 
 // Wywołanie funkcji pobierającej dane
 fetchRandomMovie();
+
+moreDetailsBtn.addEventListener('click', () => {
+  openPopUp(movie, apikey);
+});
