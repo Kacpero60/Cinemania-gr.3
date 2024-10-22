@@ -66,6 +66,58 @@
   border: 1px solid #fff;
 }
 
+.trailerModal {
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1000;
+  background: black;
+  box-shadow: 1px 1px 14px 4px rgba(255, 107, 8, 0.42);
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+}
+
+.trailer-modal-content {
+  position: relative;
+  background-color: #111;
+  max-width: 700px;
+  max-height: 400px;
+  border-radius: 10px;
+}
+iframe {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+}
+.close {
+  position: absolute;
+  top: 10px;
+  right: 20px;
+  color: #fff;
+  font-size: 30px;
+  cursor: pointer;
+}
+
+.no-trailer-content {
+  text-align: center;
+  padding: 20px;
+}
+
+.no-trailer-img {
+  max-width: 363px;
+  height: auto;
+}
+
+.no-trailer {
+  color: #fff;
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
 @media screen and (min-width: 768px) {
   .hero.container {
     height: 372px;
