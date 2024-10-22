@@ -14,8 +14,8 @@
   <body>
     <!--header!-->
     <script type="module" src="../js/header.js"></script>
-    <link rel="stylesheet" href="../css/header.css">
-    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="../css/header.css" />
+    <link rel="stylesheet" href="../css/styles.css" />
     <header class="header">
       <div class="menu">
         <nav class="nav">
@@ -23,13 +23,16 @@
             <svg width="48" height="48">
               <use href="../images/icons.svg#icon-logo"></use>
             </svg>
-            <a href="../index.html" class="link"><span class="cinemania">Cinemania</span>
+            <a href="../index.html" class="link"
+              ><span class="cinemania">Cinemania</span>
             </a>
           </div>
           <ul class="list nav-list">
             <li><a href="../index.html" class="navigation link">HOME</a></li>
             <li><a href="catalog.html" class="navigation link">CATALOG</a></li>
-            <li><a href="library.html" class="navigation link">MY LIBRARY</a></li>
+            <li>
+              <a href="library.html" class="navigation link">MY LIBRARY</a>
+            </li>
           </ul>
           <button class="navigation button-menu">MENU</button>
           <button class="toggle-button">
@@ -51,9 +54,21 @@
       <div class="backdrop">
         <div class="nav-mobile hidden">
           <ul class="list nav-list-mobile">
-            <li><a href="../index.html" class="navigation text-mobile link">HOME</a></li>
-            <li><a href="catalog.html" class="navigation text-mobile link">CATALOG</a></li>
-            <li><a href="library.html" class="navigation text-mobile link">MY LIBRARY</a></li>
+            <li>
+              <a href="../index.html" class="navigation text-mobile link"
+                >HOME</a
+              >
+            </li>
+            <li>
+              <a href="catalog.html" class="navigation text-mobile link"
+                >CATALOG</a
+              >
+            </li>
+            <li>
+              <a href="library.html" class="navigation text-mobile link"
+                >MY LIBRARY</a
+              >
+            </li>
           </ul>
         </div>
       </div>
@@ -114,8 +129,6 @@
 
     <div class="pagination" id="pagination"></div>
 
-
-  <include src="./partials/pop-up-movie.html"></include>
-
+    <include src="./partials/pop-up-movie.html"></include>
   </body>
 </html>
