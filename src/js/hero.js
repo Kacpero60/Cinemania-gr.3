@@ -35,6 +35,27 @@ const fetchRandomMovie = async () => {
       const backgroundImageUrl = `https://image.tmdb.org/t/p/original${randomMovie.backdrop_path}`;
 
       setBackgroundImage(backgroundImageUrl);
+
+      //Dodawanie trailera:
+      const trailerUrl = `https://api.themoviedb.org/3/movie/${randomMovie.id}/videos?api_key=${apiKey}&language=en-US`;
+      const trailerResponse = await fetch(trailerUrl);
+      const trailerData = await trailerResponse.json();
+
+      if (trailerData.results.length > 0) {
+        const trailer = trailerData.results.find(
+          video => video.type === 'Trailer'
+        );
+        if (trailer) {
+          const youtubeUrl = `https://www.youtube.com/embed/${trailer.key}`;
+          watchTrailerBtn.onclick = () => openTrailerModal(youtubeUrl);
+        } else {
+          // Brak zwiastuna
+          watchTrailerBtn.onclick = () => openTrailerModal(null);
+        }
+      } else {
+        // Brak zwiastuna
+        watchTrailerBtn.onclick = () => openTrailerModal(null);
+      }
     } else {
       setDefaultHero(); // Jeśli brak wyników, ustawiamy domyślny wygląd
     }
@@ -75,5 +96,52 @@ const setDefaultHero = () => {
   moreDetailsBtn.style.display = 'none';
 };
 
+// Funckcja otwierajaca modal z trailerem
+const openTrailerModal = trailerUrl => {
+  const trailerModal = document.querySelector('.trailerModal');
+  const trailerFrame = document.getElementById('trailerFrame');
+
+  if (trailerUrl) {
+    trailerFrame.src = trailerUrl;
+    trailerFrame.style.display = 'block'; // Pokaż wideo
+  } else {
+    trailerFrame.style.display = 'none'; // Ukryj wideo
+
+    // Dodaj komunikat o braku zwiastuna, jeśli nie istnieje
+    if (!document.querySelector('.no-trailer-content')) {
+      document.querySelector('.trailer-modal-content').innerHTML += `
+        <div class="no-trailer-content">
+          <p class="no-trailer">OOPS... We are very sorry, but we couldn't find the trailer!</p>
+          <img src="../images/NoTrailer.png" alt="No trailer available" class="no-trailer-img" />
+        </div>
+      `;
+    }
+  }
+  trailerModal.style.display = 'flex';
+};
+
+// Zamykanie modala z trailerem
+const closeTrailerModal = () => {
+  const trailerModal = document.querySelector('.trailerModal');
+  const trailerFrame = document.getElementById('trailerFrame');
+
+  trailerFrame.src = ''; // Czyści źródło wideo po zamknięciu modala
+  trailerModal.style.display = 'none';
+
+  // Usuwamy komunikat o braku zwiastuna i obrazek (jeśli istnieją)
+  const noTrailerContent = document.querySelector('.no-trailer-content');
+  if (noTrailerContent) {
+    noTrailerContent.remove();
+  }
+};
+
+// Obsługa zamykania modala po kliknięciu "x" lub poza modalem
+document.querySelector('.close').addEventListener('click', closeTrailerModal);
+window.addEventListener('click', event => {
+  const trailerModal = document.querySelector('.trailerModal');
+  if (event.target === trailerModal) {
+    closeTrailerModal();
+  }
+});
 // Wywołanie funkcji pobierającej dane
 fetchRandomMovie();
