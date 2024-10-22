@@ -120,3 +120,64 @@ function openPopUp(movie) {
 }
 
 document.addEventListener('DOMContentLoaded', displayLibrary);
+// Funkcja do wyświetlania filmów z biblioteki
+async function displayLibraryMovies() {
+    let library = JSON.parse(localStorage.getItem('library')) || [];
+  
+    // Sprawdzenie, czy w bibliotece są jakieś filmy
+    const messageEl = document.querySelector('.message');
+    const loadMoreBtn = document.getElementById('loadMoreBtn');
+    
+    if (library.length === 0) {
+      messageEl.style.display = 'block'; // Wyświetl komunikat, jeśli brak filmów
+      loadMoreBtn.style.display = 'none'; // Ukryj przycisk "Load More"
+      return;
+    }
+  
+    // Ukryj komunikat o braku filmów
+    messageEl.style.display = 'none';
+    loadMoreBtn.style.display = 'block';
+  
+    // Tworzymy kontener na filmy
+    const libraryContainer = document.querySelector('.gallery-library');
+    libraryContainer.innerHTML = ''; // Czyszczenie poprzedniej zawartości
+  
+    // Pobieramy szczegóły dla każdego filmu z localStorage
+    for (let movieId of library) {
+      try {
+        const response = await fetch(`https://api.themoviedb.org/3/movie/${movieId}?api_key=${apikey}`);
+        if (!response.ok) {
+          throw new Error('Błąd podczas pobierania danych filmu');
+        }
+        const movie = await response.json();
+  
+        // Tworzenie elementów HTML dla każdego filmu
+        const movieEl = document.createElement('div');
+        movieEl.className = 'movie';
+  
+        const imgEl = document.createElement('img');
+        imgEl.src = `https://image.tmdb.org/t/p/w500${movie.poster_path}`;
+  
+        const titleEl = document.createElement('p');
+        titleEl.textContent = movie.title;
+        titleEl.className = 'movie-title';
+  
+        const genresEl = document.createElement('p');
+        const genres = movie.genres.map(genre => genre.name).join(', ');
+        const year = movie.release_date.split('-')[0];
+        genresEl.textContent = `${genres} | ${year}`;
+        genresEl.className = 'movie-genres-year';
+  
+        movieEl.appendChild(imgEl);
+        movieEl.appendChild(titleEl);
+        movieEl.appendChild(genresEl);
+        libraryContainer.appendChild(movieEl);
+      } catch (error) {
+        console.error('Błąd podczas pobierania filmów z biblioteki:', error);
+      }
+    }
+  }
+  
+  // Wywołaj funkcję podczas ładowania strony
+  document.addEventListener('DOMContentLoaded', displayLibraryMovies);
+  

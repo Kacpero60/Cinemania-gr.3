@@ -3,45 +3,43 @@ export async function openPopUp(movie, apikey) {
     const popUpContainer = document.getElementById('popUpContainer');
     const popUpImage = document.getElementById('popUpImage');
     const popUpDescription = document.getElementById('popUpDescription');
-
-    // Clear previous content
-    popUpImage.innerHTML = ''; // Clear any existing image
-    popUpDescription.innerHTML = ''; // Clear any existing description
-
-    // Create an img element for the movie poster
+  
+    // Wyczyść poprzednią zawartość
+    popUpImage.innerHTML = '';
+    popUpDescription.innerHTML = '';
+  
+    // Tworzenie elementu img dla plakatu filmu
     const imgEl = document.createElement('img');
     imgEl.src = `https://image.tmdb.org/t/p/w500${movie.poster_path}`;
-
-    // Append the image to the pop-up image div
     popUpImage.appendChild(imgEl);
-
-    // Fetch genres and map them
+  
+    // Pobierz gatunki filmów
     const genreMap = await fetchGenres(apikey);
-    const genreNames = movie.genre_ids.map(id => genreMap[id]).filter(name => name); // Map IDs to names
-
+    const genreNames = movie.genre_ids.map(id => genreMap[id]).filter(name => name); // Mapowanie ID do nazw
+  
     // Sprawdzenie, czy film jest już w bibliotece
     const library = JSON.parse(localStorage.getItem('library')) || [];
     const isInLibrary = library.some(item => item.id === movie.id);
-
+  
     popUpDescription.innerHTML = `
         <h2>${movie.title}</h2>
         <p class="pop-up-description-data vote">Vote / Votes: <span>${movie.vote_average} / ${movie.vote_count}</span></p>
         <p class="pop-up-description-data popularity">Popularity: <span>${movie.popularity}</span></p>
-        <p class="pop-up-description-data gendre">Genre: <span>${genreNames.length > 0 ? genreNames.join(', ') : ''}</span></p>
+        <p class="pop-up-description-data genre">Genre: <span>${genreNames.length > 0 ? genreNames.join(', ') : ''}</span></p>
         <p class="pop-up-description-data about">ABOUT:</p>
         <p class="pop-up-description-data about-desc">${movie.overview}</p>
         <button class="buttonAddToMyLibrary" id="buttonAddToMyLibrary">${isInLibrary ? 'Remove from my library' : 'Add to my library'}</button>
     `;
-
-    // Show the pop-up
+  
+    // Pokaż pop-up
     popUpContainer.style.display = 'flex';
-
-    // Close pop-up event
-    document.getElementById('closePopUp').onclick = function() {
-        popUpContainer.style.display = 'none';
+  
+    // Zamknij pop-up po kliknięciu przycisku zamknięcia
+    document.getElementById('closePopUp').onclick = function () {
+      popUpContainer.style.display = 'none';
     };
-
-    // Obsługa kliknięcia przycisku 'Add to my library'
+  
+    // Obsługa kliknięcia przycisku "Add to my library"
     const addToLibraryButton = document.getElementById('buttonAddToMyLibrary');
     addToLibraryButton.onclick = function() {
         addToLibrary(movie);
@@ -55,23 +53,25 @@ export async function openPopUp(movie, apikey) {
 // Funkcja do pobierania gatunków
 export async function fetchGenres(apikey) {
     try {
-        const response = await fetch(`https://api.themoviedb.org/3/genre/movie/list?api_key=${apikey}&language=en-US&`);
-        const data = await response.json();
-
-        // Tworzenie mapy ID gatunków do nazw
-        const genreMap = {};
-        data.genres.forEach(genre => {
-            genreMap[genre.id] = genre.name;
-        });
-
-        return genreMap;
+      const response = await fetch(
+        `https://api.themoviedb.org/3/genre/movie/list?api_key=${apikey}&language=en-US`
+      );
+      const data = await response.json();
+  
+      // Tworzenie mapy ID gatunków do nazw
+      const genreMap = {};
+      data.genres.forEach(genre => {
+        genreMap[genre.id] = genre.name;
+      });
+  
+      return genreMap;
     } catch (error) {
-        console.error('Błąd podczas pobierania gatunków:', error);
-        return {};
+      console.error('Błąd podczas pobierania gatunków:', error);
+      return {};
     }
 }
 
-// Funkcja dodająca film do localStorage
+// Funkcja dodająca/odejmująca film z biblioteki
 function addToLibrary(movie) {
     let library = JSON.parse(localStorage.getItem('library')) || [];
     
@@ -88,5 +88,6 @@ function addToLibrary(movie) {
         alert(`${movie.title} został usunięty z Twojej biblioteki!`);
     }
     
+    // Zapisz zaktualizowaną bibliotekę w localStorage
     localStorage.setItem('library', JSON.stringify(library));
 }
